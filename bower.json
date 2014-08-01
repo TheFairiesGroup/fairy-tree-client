@@ -1,0 +1,23 @@
+{
+  "name": "flatlanders-store",
+  "version": "0.0.0",
+  "homepage": "https://github.com/viktorstaikov/flatlanders-store",
+  "authors": [
+    "Viktor Staikov <viktor.staikov@telerik.com>"
+  ],
+  "description": "This is AngularJS app built during the following course: https://www.codeschool.com/courses/shaping-up-with-angular-js",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.21",
+    "bootstrap": "~3.2.0"
+  }
+}
