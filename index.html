@@ -9,7 +9,7 @@
 <body ng-controller="MajorsController as majors">
   <ul class="list-group">
 
-    <li class="list-group-item" ng-repeat="major in majors.array">
+    <li class="list-group-item" ng-repeat="major in majors.array" data-id="{{major.$id}}">
       <h3>
         {{major.Name}}
         <em class="pull-right">{{major.Subjects.length}}</em>
@@ -18,9 +18,8 @@
   </ul>
 
   <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-
-  <script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
-  <script src='https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js'></script>
+  <script type="text/javascript" src='bower_components/firebase/firebase.js'></script>
+  <script type="text/javascript" src='bower_components/angularfire/dist/angularfire.min.js'></script>
 
   <script type="text/javascript" src="js/app.js"></script>
 </body>

@@ -6,7 +6,13 @@
   app.controller('MajorsController', function MajorsController($scope, $firebase) {
     var ref = new Firebase("https://fairytree.firebaseio.com/Majors");
     this.array = $firebase(ref).$asArray();
+
+    console.log(this.array);
     //this.array = majors;
+  });
+
+  app.controller('SubjectsController', function SubjectsController($scope, $firebase) {
+
   });
 
   // var majors = [{
