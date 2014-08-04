@@ -1,12 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="fairyTree">
 
 <head>
   <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+  
 </head>
 
-<body>
+<body ng-controller="MajorsController as majors">
+  <ul class="list-group">
+
+    <li class="list-group-item" ng-repeat="major in majors.array">
+      <h3>
+        {{major.Name}}
+        <em class="pull-right">{{major.Subjects.length}}</em>
+      </h3>
+    </li>
+  </ul>
+
   <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+
+  <script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+  <script src='https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js'></script>
 
   <script type="text/javascript" src="js/app.js"></script>
 </body>
