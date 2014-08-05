@@ -2,38 +2,32 @@
 (function () {
   var appFactories = angular.module("appFactories", ["firebase"]);
 
-  appFactories.factory("SubjectsToGraph", function($FirebaseArray) {
-  return $FirebaseArray.$extendFactory({
-    exportGraph: function() {
-      var subj = this._list,
-        edges = [];
+  appFactories.factory("graphFactory", function ($FirebaseArray) {
+    return $FirebaseArray.$extendFactory({
+      exportGraph: function () {
+        var subj = this.$list,
+          edges = [];
 
-      for (var i = 0, len = subj.length; i < len; i++) {
-        var subjA = subj[i];
-        for (var j = i + 1; j < len; j++) {
+        subj.forEach(function (subjectA, i) {
+          var connections = [];
+          var dependencies = subj.filter(function (subjectB, j) {
+            if(i === j) return false;
+            // TODO: write some real logic here
+            connections.push([]);
+            return true;
+          })
 
-          var connections = [],
-            subjB = subj[j];
-          for (var k = 0, lenA = subjA.Provides.length; k < lenA; k++) {
-            for (var l = 0, lenB = subjB.Depends.length; l < lenB; l++) {
-
-              if (subjA.Provides[k] == subjB.Depends[l]) {
-                connections.push(subjA.Provides[k]);
-              }
-            }
-          }
-
-          if (connections.length > 0) {
+          dependencies.forEach(function (dependency, i) {
             edges.push({
-              from: subjA,
-              to: subjB,
-              connections: connections
-            })
-          }
-        }
+              from: dependency,
+              to: subjectA,
+              connections: connections[i]
+            });
+          });
+        });
+
+        return edges;
       }
-      return edges;
-    }
-  });
-})
+    });
+  })
 }());
