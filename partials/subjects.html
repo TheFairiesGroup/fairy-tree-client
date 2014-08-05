@@ -1,0 +1,31 @@
+<div class="container-fluid center">
+    
+    <section id="graph" class="pull-left">
+      <div class="col-md-4" ng-repeat="subject in subjects">
+        <!-- <a href="" class="btn btn-success" ng-click="select(subject)">{{subject.Name}}</a> -->
+        <button ng-click="select(subject)" type="button" class="btn btn-lg btn-success popover-dismiss" data-toggle="popover" title="{{subject.Name}}">{{subject.Name}}</button>
+        &#45;&#62;
+        <!-- <a href="" class="btn btn-danger" ng-click="select(subject)">{{subject.Name}}</a> -->
+        <button ng-click="select(subject)" type="button" class="btn btn-lg btn-danger popover-dismiss" data-toggle="popover" title="{{subject.Name}}">{{subject.Name}}</button>
+      </div>
+    </section>
+
+    <section id="details" class="col-md-2 panel panel-default pull-right" ng-show="selected">
+      <div class="panel-heading">
+        <h3>{{selected.Name}}</h3>
+      </div>
+      <div class="panel-body">
+        {{selected.Description}}
+        
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success" ng-repeat="provide in selected.Provides">
+            {{provide}}
+          </li>
+          
+          <li class="list-group-item list-group-item-danger"  ng-repeat="depends in selected.Depends">
+            {{depends}}
+          </li>
+        </ul>
+      </div>
+    </section>
+</div>

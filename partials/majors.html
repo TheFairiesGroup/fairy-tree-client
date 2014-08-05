@@ -1,9 +1,18 @@
-<div class="container-fluid center">
-    <div class="col-md-8">
-      <ul class="list-group">
-        <li class="list-group-item" ng-repeat="major in majors.array">
-          <major></major>
-        </li>
-      </ul>
+<div class="container-fluid center col-md-10 col-md-offset-1">
+    <div class="jumbotron">
+        <h1 class="spechead">Какво ще научите във ФМИ?</h1>
+        <p>Ако някога сте се чудили защо учите дадени предмети, това е мястото, където ще получите нужните отговори.
+    Ще разберете връзките между изучваните предмети и какви възможности за развитие разкрива пред Вас.
+    <br></p><h3>Моля изберете специалността, която Ви интересува.</h3><p></p>
+
+      </div>
+
+    <div class="" ng-repeat="major in majors">
+        <a href="#/major/{{major.$id}}" data-id="{{major.$id}}" class="btn btn-default btn-group-justified col-md-4">
+          <h3>
+            {{major.Name}}
+            <em class="pull-right">{{major.Subjects.length}}</em>
+          </h3>
+        </a>
     </div>
 </div>
