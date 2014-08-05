@@ -1,4 +1,4 @@
-flatlanders-store
+Fairy tree
 =================
 
-This is AngularJS app built during the following course:  https://www.codeschool.com/courses/shaping-up-with-angular-js
+This is AngularJS app (more like prototype by the time this is written) for displaying dependenciese between courses for each major in FMI.
