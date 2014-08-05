@@ -1,7 +1,23 @@
 <div class="container-fluid center">
-    
-    <section id="graph" class="pull-left">
-      <div class="col-md-4" ng-repeat="subject in subjects">
+    <div class="page-header">
+      <a href="#" class="btn btn-large"><i class="icon-arrow-left"></i> Back</a>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-default">Majors</button>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="major in majors">
+            <a href="#/major/{{major.$id}}">{{major.Name}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="graph" class="pull-left col-md-8">
+      <div class="col-md-6" ng-repeat="subject in subjects">
         <!-- <a href="" class="btn btn-success" ng-click="select(subject)">{{subject.Name}}</a> -->
         <button ng-click="select(subject)" type="button" class="btn btn-lg btn-success popover-dismiss" data-toggle="popover" title="{{subject.Name}}">{{subject.Name}}</button>
         &#45;&#62;
@@ -10,7 +26,7 @@
       </div>
     </section>
 
-    <section id="details" class="col-md-2 panel panel-default pull-right" ng-show="selected">
+    <section id="details" class="col-md-3 panel panel-default pull-right" ng-show="selected">
       <div class="panel-heading">
         <h3>{{selected.Name}}</h3>
       </div>

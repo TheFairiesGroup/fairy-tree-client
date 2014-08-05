@@ -2,15 +2,17 @@
   var appControllers = angular.module("appControllers", ["firebase"]);
 
   appControllers.controller('MajorsController', function MajorsController($scope, $firebase) {
-    var ref = new Firebase("https://fairytree.firebaseio.com/Majors");
-    $scope.majors = $firebase(ref).$asArray();
+    var refMajors = new Firebase("https://fairytree.firebaseio.com/Majors");
+    $scope.majors = $firebase(refMajors).$asArray();
 
   });
 
   appControllers.controller('SubjectsController', function SubjectsController($scope, $firebase, $routeParams) {
-    var ref = new Firebase("https://fairytree.firebaseio.com/Subjects");
-    $scope.subjects = $firebase(ref).$asArray();
+    var refSubjects = new Firebase("https://fairytree.firebaseio.com/Subjects");
+    $scope.subjects = $firebase(refSubjects).$asArray();
 
+    var refMajors = new Firebase("https://fairytree.firebaseio.com/Majors");
+    $scope.majors = $firebase(refMajors).$asArray();
 
     $scope.select = function (subject) {
       console.log(subject);
