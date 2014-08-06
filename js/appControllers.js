@@ -19,6 +19,7 @@
       });
 
       var refMajors = new Firebase("https://fairytree.firebaseio.com/Majors");
+      $scope.selectedMajor = " ";
       $scope.majors = $firebase(refMajors).$asArray();
       $scope.majors.$loaded().then(function () {
         $scope.selectedMajor = $scope.majors.filter(function (major) {

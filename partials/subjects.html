@@ -1,25 +1,29 @@
-<div class="container-fluid center">
-    <div class="page-header">
-      <h1>{{selectedMajor.Name}}</h1>
+<div class="bs-docs-header ng-cloak" id="content" >
+  <div class="container">
+    <h1>{{selectedMajor.Name}}</h1>
 
-      <a href="#" class="btn btn-large"><i class="icon-arrow-left"></i> Back</a>
+    
+    <div class="btn-group">
+      <a href="#" class="btn btn-large" role="button">Назад</a>
 
       <div class="btn-group">
-        <div class="btn-group">
-          <button type="button" class="btn btn-default">Majors</button>
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            <span class="caret"></span>
-            <span class="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li ng-repeat="major in majors">
-              <a href="#/major/{{major.$id}}">{{major.Name}}</a>
-            </li>
-          </ul>
-        </div>
+        <button type="button" class="btn btn-default">Специалности</button>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="major in majors">
+            <a href="#/major/{{major.$id}}">{{major.Name}}</a>
+          </li>
+        </ul>
       </div>
     </div>
-    
+  </div>
+</div>
+
+
+<div class="container-fluid center ng-cloak" >
     <section id="graph" class="pull-left col-md-8  text-center">
       <div class="col-md-6" ng-repeat="edge in edges">
         <button ng-click="select(edge.from)" type="button" class="col-md-4 btn btn-lg btn-success popover-dismiss" data-toggle="popover" title="{{edge.from.Name}}">{{edge.from.Name}}</button>
