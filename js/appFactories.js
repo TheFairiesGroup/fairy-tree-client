@@ -9,12 +9,30 @@
           edges = [];
 
         subj.forEach(function (subjectA, i) {
-          var connections = [];
+          var connections = [],
+            dependentTerms = subjectA.Depends || [];
+
           var dependencies = subj.filter(function (subjectB, j) {
             if (i === j) return false;
-            // TODO: write some real logic here
-            connections.push([]);
-            return true;
+
+            if (!Array.isArray(subjectB.Provides)) {
+              subjectB.Provides = [];
+            }
+
+            var commonTerms = [];
+            dependentTerms.forEach(function (term) {
+              if (subjectB.Provides.indexOf(term) > -1) {
+                commonTerms.push(term);
+                return true;
+              }
+              return false;
+            });
+
+            if (commonTerms && commonTerms.length > 0) {
+              connections.push(commonTerms);
+              return true;
+            }
+            return false;
           })
 
           dependencies.forEach(function (dependency, i) {

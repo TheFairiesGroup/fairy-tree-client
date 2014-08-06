@@ -15,7 +15,7 @@
       }).$asArray();
       $scope.subjects.$loaded().then(function () {
         $scope.edges = $scope.subjects.exportGraph();
-        console.log($scope.edges);
+        // console.log($scope.edges);
       });
 
       var refMajors = new Firebase("https://fairytree.firebaseio.com/Majors");
@@ -28,9 +28,9 @@
       });
 
       $scope.select = function (subject) {
-        console.log(subject);
+        // console.log(subject);
         $scope.selected = subject;
-      }
+      };
     }
   ]);
 
