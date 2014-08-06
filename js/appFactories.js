@@ -11,7 +11,7 @@
         subj.forEach(function (subjectA, i) {
           var connections = [];
           var dependencies = subj.filter(function (subjectB, j) {
-            if(i === j) return false;
+            if (i === j) return false;
             // TODO: write some real logic here
             connections.push([]);
             return true;
