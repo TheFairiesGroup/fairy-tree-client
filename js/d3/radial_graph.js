@@ -10,6 +10,7 @@
                 },
                 link: function($scope, element, attrs) {
                     d3Service.d3().then(function(d3) {
+
                     });
                 }
             }

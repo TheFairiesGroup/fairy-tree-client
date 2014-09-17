@@ -1,6 +1,6 @@
 "use strict";
 (function() {
-    var factories = angular.module("factories", ["firebase"]);
+    var factories = angular.module("fairyTree.factories", ["firebase"]);
 
     factories.factory("graphFactory", function($FirebaseArray) {
         return $FirebaseArray.$extendFactory({

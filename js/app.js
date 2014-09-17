@@ -1,7 +1,7 @@
 "use strict";
 
 (function() {
-    var app = angular.module("fairyTree", ["ngRoute", "controllers", "fairyTree.directives"]);
+    var app = angular.module("fairyTree", ["ngRoute", "fairyTree.controllers", "fairyTree.directives"]);
 
     app.config(["$routeProvider",
         function($routeProvider) {

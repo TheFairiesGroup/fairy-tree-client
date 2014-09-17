@@ -1,5 +1,5 @@
 (function() {
-    var controllers = angular.module("controllers", ["firebase", "factories"]);
+    var controllers = angular.module("fairyTree.controllers", ["firebase", "fairyTree.factories"]);
 
     controllers.controller('MajorsController', function MajorsController($scope, $firebase) {
         var refMajors = new Firebase("https://fairytree.firebaseio.com/Majors");
@@ -31,16 +31,6 @@
             $scope.select = function(subject) {
                 $scope.selected = subject;
             };
-
-            console.log($scope);
-
-            $scope.greeting = "Resize the page to see the re-rendering";
-            $scope.data = [
-                {name: "Greg", score: 98},
-                {name: "Ari", score: 96},
-                {name: 'Q', score: 75},
-                {name: "Loser", score: 48}
-            ];
         }
     ]);
 }());
