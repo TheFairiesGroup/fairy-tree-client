@@ -1,18 +1,18 @@
 "use strict";
 (function () {
-    var appFactories = angular.module("appFactories", ["firebase"]);
+    var factories = angular.module("factories", ["firebase"]);
 
-    appFactories.factory("graphFactory", function ($FirebaseArray) {
+    factories.factory("graphFactory", function($FirebaseArray) {
         return $FirebaseArray.$extendFactory({
-            exportGraph: function () {
+            exportGraph: function() {
                 var subj = this.$list,
                     edges = [];
 
-                subj.forEach(function (subjectA, i) {
+                subj.forEach(function(subjectA, i) {
                     var connections = [],
                         dependentTerms = subjectA.Depends || [];
 
-                    var dependencies = subj.filter(function (subjectB, j) {
+                    var dependencies = subj.filter(function(subjectB, j) {
                         if (i === j) return false;
 
                         if (!Array.isArray(subjectB.Provides)) {
@@ -20,7 +20,7 @@
                         }
 
                         var commonTerms = [];
-                        dependentTerms.forEach(function (term) {
+                        dependentTerms.forEach(function(term) {
                             if (subjectB.Provides.indexOf(term) > -1) {
                                 commonTerms.push(term);
                                 return true;
@@ -36,7 +36,7 @@
                         return false;
                     })
 
-                    dependencies.forEach(function (dependency, i) {
+                    dependencies.forEach(function(dependency, i) {
                         edges.push({
                             from: dependency,
                             to: subjectA,

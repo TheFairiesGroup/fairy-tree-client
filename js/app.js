@@ -1,10 +1,10 @@
 "use strict";
 
 (function () {
-    var app = angular.module("fairyTree", ["ngRoute", "appControllers"]);
+    var app = angular.module("fairyTree", ["ngRoute", "controllers"]);
 
     app.config(["$routeProvider",
-        function ($routeProvider) {
+        function($routeProvider) {
             $routeProvider
                 .when("/home", {
                     templateUrl: "partials/majors.html",

@@ -2,7 +2,7 @@
   <div class="container">
     <h1>{{selectedMajor.Name}}</h1>
 
-    
+
     <div class="btn-group">
       <a href="#" class="btn btn-large" role="button">Назад</a>
 
@@ -27,7 +27,6 @@
     <section id="graph" class="pull-left col-md-8  text-center">
       <div class="col-md-6" ng-repeat="edge in edges">
         <button ng-click="select(edge.from)" type="button" class="col-md-4 btn btn-lg btn-success popover-dismiss" data-toggle="popover" title="{{edge.from.Name}}">{{edge.from.Name}}</button>
-        <span class="col-md-2">&#45;&#62;</span>
         <button ng-click="select(edge.to)" type="button" class="col-md-4 btn btn-lg btn-danger popover-dismiss" data-toggle="popover" title="{{edge.to.Name}}">{{edge.to.Name}}</button>
       </div>
     </section>
@@ -38,12 +37,12 @@
       </div>
       <div class="panel-body">
         {{selected.Description}}
-        
+
         <ul class="list-group">
           <li class="list-group-item list-group-item-success" ng-repeat="provide in selected.Provides">
             {{provide}}
           </li>
-          
+
           <li class="list-group-item list-group-item-danger"  ng-repeat="depends in selected.Depends">
             {{depends}}
           </li>
