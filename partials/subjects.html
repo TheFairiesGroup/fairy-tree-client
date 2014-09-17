@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="styles/radial_graph.css" type="text/css" media="screen" charset="utf-8">
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="js/radial_graph.js"></script>
+
 <div class="bs-docs-header ng-cloak" id="content" >
   <div class="container">
     <h1>{{selectedMajor.Name}}</h1>
@@ -22,31 +26,6 @@
   </div>
 </div>
 
+<div id="graph-content"></div>
 
-<div class="container-fluid center ng-cloak" >
-    <section id="graph" class="pull-left col-md-8  text-center">
-      <div class="col-md-6" ng-repeat="edge in edges">
-        <button ng-click="select(edge.from)" type="button" class="col-md-4 btn btn-lg btn-success popover-dismiss" data-toggle="popover" title="{{edge.from.Name}}">{{edge.from.Name}}</button>
-        <button ng-click="select(edge.to)" type="button" class="col-md-4 btn btn-lg btn-danger popover-dismiss" data-toggle="popover" title="{{edge.to.Name}}">{{edge.to.Name}}</button>
-      </div>
-    </section>
-
-    <section id="details" class="col-md-3 panel panel-default pull-right" ng-show="selected">
-      <div class="panel-heading">
-        <h3>{{selected.Name}}</h3>
-      </div>
-      <div class="panel-body">
-        {{selected.Description}}
-
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-success" ng-repeat="provide in selected.Provides">
-            {{provide}}
-          </li>
-
-          <li class="list-group-item list-group-item-danger"  ng-repeat="depends in selected.Depends">
-            {{depends}}
-          </li>
-        </ul>
-      </div>
-    </section>
-</div>
+<div radial-graph data="data"></div>

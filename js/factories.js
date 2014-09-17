@@ -1,5 +1,5 @@
 "use strict";
-(function () {
+(function() {
     var factories = angular.module("factories", ["firebase"]);
 
     factories.factory("graphFactory", function($FirebaseArray) {
