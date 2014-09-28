@@ -40,6 +40,27 @@
                                 .append("g")
                                 .attr("transform", "translate(" + radius + "," + radius + ")");
 
+                            // Define the gradient
+                            var gradient = svg.append("svg:defs")
+                                .append("svg:linearGradient")
+                                .attr("id", "gradient")
+                                .attr("x1", "0%")
+                                .attr("y1", "0%")
+                                .attr("x2", "100%")
+                                .attr("y2", "100%")
+                                .attr("spreadMethod", "pad");
+
+                            // Define the gradient colors
+                            gradient.append("svg:stop")
+                                .attr("offset", "0%")
+                                .attr("stop-color", "#74C365")
+                                .attr("stop-opacity", 1);
+
+                            gradient.append("svg:stop")
+                                .attr("offset", "100%")
+                                .attr("stop-color", "#E62020")
+                                .attr("stop-opacity", 1);
+
                             var findNodes = function(subjects) {
                                 return subjects.map(function(subject) {
                                     return {
@@ -66,7 +87,7 @@
                                     if (source && target) { break; }
                                 };
 
-                                if (!(source&& target)) { debugger; }
+                                if (!(source && target)) { debugger; }
 
                                 return {
                                     source: source,
@@ -78,7 +99,8 @@
                                 .data(bundle(links))
                                 .enter().append("path")
                                 .attr("class", "link")
-                                .attr("d", line);
+                                .attr("d", line)
+                                .attr("stroke", 'url(#gradient)');
 
                             svg.selectAll(".node")
                                 .data(nodes.filter(function(n) {
@@ -102,7 +124,13 @@
                                 })
                                 .text(function(d) {
                                     return d.name;
-                                });
+                                })
+                                .on('mouseover', function(d) {
+                                    svg.selectAll(".link")
+                                        .filter(function(data) { return (data[0].id != d.id && data[2].id != d.id) })
+                                        .attr('stroke-opacity', 0.1);
+                                })
+                                .on('mouseout', function() { svg.selectAll('.link').attr('stroke-opacity', 1) });
 
                             d3.select(self.frameElement).style("height", diameter + "px");
                         });
