@@ -64,7 +64,7 @@
                             var findNodes = function(subjects) {
                                 return subjects.map(function(subject) {
                                     return {
-                                        name: subject.Name,
+                                        name: subject._name,
                                         parent: 'root',
                                         id: subject.$id,
                                         subject: subject

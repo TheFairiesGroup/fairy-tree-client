@@ -10,18 +10,18 @@
 
                 subjects.forEach(function(subjectA, i) {
                     var connections = [],
-                        dependentTerms = subjectA.Depends || [];
+                        dependentTerms = subjectA.depends || [];
 
                     var dependencies = subjects.filter(function(subjectB, j) {
                         if (i === j) return false;
 
-                        if (!Array.isArray(subjectB.Provides)) {
-                            subjectB.Provides = [];
+                        if (!Array.isArray(subjectB.provides)) {
+                            subjectB.provides = [];
                         }
 
                         var commonTerms = [];
                         dependentTerms.forEach(function(term) {
-                            if (subjectB.Provides.indexOf(term) > -1) {
+                            if (subjectB.provides.indexOf(term) > -1) {
                                 commonTerms.push(term);
                                 return true;
                             }

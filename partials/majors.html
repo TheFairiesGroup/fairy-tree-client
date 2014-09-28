@@ -2,7 +2,11 @@
   <div class="container">
     <span class="bs-docs-booticon bs-docs-booticon-lg bs-docs-booticon-outline">Ft</span>
     <h1 class="spechead">Какво ще научите във ФМИ?</h1>
-    <p class="lead">Ако някога сте се чудили защо учите дадени предмети, това е мястото, където ще получите нужните отговори. Ще разберете връзките между изучваните предмети и какви възможности за развитие разкрива пред Вас.</p>
+    <p class="lead">
+      Ако някога сте се чудили защо учите дадени предмети, това е мястото,
+      където ще получите нужните отговори. Ще разберете връзките между
+      изучваните предмети и какви възможности за развитие разкрива пред Вас.
+    </p>
 
     <p class="lead">
       <a class="btn btn-outline-inverse btn-lg" href="#/about" >Повече информация за проекта</a>
@@ -16,12 +20,11 @@
     <h2 class="text-center">Моля изберете специалността, която Ви интересува</h2>
   </div>
   <div class="panel-body">
-    <ul class="list-group col-md-10 col-md-offset-1" ng-repeat="major in majors">
-          <a href="#/major/{{major.$id}}" class="btn btn-default btn-group-justified">
-            <h3>{{major.Name}}</h3>
-            <em class="pull-right">Предмети: {{major.Subjects.length}}</em>
-          </a>
-      </ul>
+    <div class="list-group col-md-10 col-md-offset-1" ng-repeat="major in majors">
+      <a href="#/major/{{major.$id}}" class="btn btn-default btn-group-justified">
+        <h3>{{major.display_name}}</h3>
+      </a>
+    </div>
   </div>
 </div>
 
