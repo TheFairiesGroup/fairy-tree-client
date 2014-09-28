@@ -1,30 +1,27 @@
-<main class="bs-docs-masthead" id="content" role="main">
-  <div class="container">
-    <span class="bs-docs-booticon bs-docs-booticon-lg bs-docs-booticon-outline">Ft</span>
-    <h1 class="spechead">Какво ще научите във ФМИ?</h1>
-    <p class="lead">
-      Ако някога сте се чудили защо учите дадени предмети, това е мястото,
-      където ще получите нужните отговори. Ще разберете връзките между
-      изучваните предмети и какви възможности за развитие разкрива пред Вас.
-    </p>
+<div id="majors-page">
+  <main role="main">
+    <div class="content">
+      <span class="logo">Ft</span>
 
-    <p class="lead">
-      <a class="btn btn-outline-inverse btn-lg" href="#/about" >Повече информация за проекта</a>
-    </p>
+      <h1>Какво ще научите във ФМИ?</h1>
 
-  </div>
-</main>
+      <p>
+        Ако някога сте се чудили защо учите дадени предмети, това е мястото,
+        където ще получите нужните отговори. Ще разберете връзките между
+        изучваните предмети и какви възможности за развитие разкрива пред Вас.
+      </p>
 
-<div class=" panel panel-default">
-  <div class="panel-heading">
-    <h2 class="text-center">Моля изберете специалността, която Ви интересува</h2>
-  </div>
-  <div class="panel-body">
-    <div class="list-group col-md-10 col-md-offset-1" ng-repeat="major in majors">
-      <a href="#/major/{{major.$id}}" class="btn btn-default btn-group-justified">
-        <h3>{{major.display_name}}</h3>
-      </a>
+      <p>
+        <a class="btn btn-outline-inverse btn-lg" href="#/about" >Повече информация за проекта</a>
+      </p>
     </div>
-  </div>
-</div>
+  </main>
 
+  <h2 class="text-center">Моля изберете специалността, която Ви интересува</h2>
+
+  <p ng-repeat="major in majors">
+    <a href="#/major/{{major.$id}}" class="btn btn-default btn-group-justified">
+      {{major.display_name}}
+    </a>
+  </p>
+</div>

@@ -1,30 +1,13 @@
-<link rel="stylesheet" href="styles/radial_graph.css" type="text/css" media="screen" charset="utf-8">
-<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
-<script type="text/javascript" src="js/radial_graph.js"></script>
+<div id="subjects-page">
+  <h1>{{currentMajor.display_name}}</h1>
 
-<div class="bs-docs-header ng-cloak" id="content" >
-  <div class="container">
-    <h1>{{currentMajor.display_name}}</h1>
+  <a href="#" class="btn btn-large" role="button">Назад</a>
 
-    <div class="btn-group">
-      <a href="#" class="btn btn-large" role="button">Назад</a>
+  <ul class="dropdown-menu" role="menu">
+    <li ng-repeat="major in majors">
+      <a href="#/major/{{major.$id}}">{{major.display_name}}</a>
+    </li>
+  </ul>
 
-      <div class="btn-group">
-        <button type="button" class="btn btn-default">Специалности</button>
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-          <span class="caret"></span>
-          <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-          <li ng-repeat="major in majors">
-            <a href="#/major/{{major.$id}}">{{major.display_name}}</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <div radial-graph subjects="subjects"></div>
 </div>
-
-<div id="graph-content"></div>
-
-<div radial-graph subjects="subjects"></div>
