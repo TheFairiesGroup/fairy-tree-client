@@ -15,9 +15,9 @@
   ],
   "dependencies": {
     "angular": "~1.2",
-    "bootstrap": "~3.2",
     "angularfire": "~0.8",
     "angular-route": "~1.2",
-    "pace": "~0.5"
+    "pace": "~0.5",
+    "normalize.css": "~3.0.1"
   }
 }
