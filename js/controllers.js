@@ -14,10 +14,6 @@
                 arrayFactory: graphFactory
             }).$asArray();
 
-            $scope.subjects.$loaded().then(function() {
-                $scope.edges = $scope.subjects.exportGraph();
-            });
-
             var refMajors = new Firebase("https://fairytree.firebaseio.com/Majors");
 
             $scope.selectedMajor = " ";

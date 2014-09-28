@@ -4,15 +4,15 @@
 
     factories.factory("graphFactory", function($FirebaseArray) {
         return $FirebaseArray.$extendFactory({
-            exportGraph: function() {
-                var subj = this.$list,
+            buildEdges: function() {
+                var subjects = this.$list,
                     edges = [];
 
-                subj.forEach(function(subjectA, i) {
+                subjects.forEach(function(subjectA, i) {
                     var connections = [],
                         dependentTerms = subjectA.Depends || [];
 
-                    var dependencies = subj.filter(function(subjectB, j) {
+                    var dependencies = subjects.filter(function(subjectB, j) {
                         if (i === j) return false;
 
                         if (!Array.isArray(subjectB.Provides)) {

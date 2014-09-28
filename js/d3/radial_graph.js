@@ -4,14 +4,12 @@
             return {
                 restrict: 'A',
                 scope: {
-                    data: '=',
-                    label: '@',
-                    onClick: '&'
+                    subjects: '='
                 },
                 link: function($scope, element, attrs) {
                     d3Service.d3().then(function(d3) {
-                        $scope.$watch('data', function(data) {
-                            if (!data) { return; }
+                        $scope.subjects.$loaded(function(subjects) {
+                            if (!subjects.length) { return; }
 
                             var diameter = 960,
                                 radius = diameter / 2,
@@ -42,34 +40,26 @@
                                 .append("g")
                                 .attr("transform", "translate(" + radius + "," + radius + ")");
 
-                            var findNodes = function(edges) {
-                                var unique = {};
-                                var result = [];
-
-                                for (var i = 0; i < edges.length; i++) {
-                                    if (!unique[edges[i].from.Name]) {
-                                        result.push({name: edges[i].from.Name, parent: 'root'});
-                                        unique[edges[i].from.Name] = true;
-                                    }
-
-                                    if (!unique[edges[i].to.Name]) {
-                                        result.push({name: edges[i].to.Name, parent: 'root'});
-                                        unique[edges[i].to.Name] = true;
-                                    }
-                                }
-
-                                return result;
+                            var findNodes = function(subjects) {
+                                return subjects.map(function(subject) {
+                                    return {
+                                        name: subject.Name,
+                                        parent: 'root',
+                                        id: subject.$id,
+                                        subject: subject
+                                    };
+                                });
                             };
 
-                            var nodes = cluster.nodes({name: 'root', children: findNodes(data)});
-                            var links = data.map(function(edge) {
+                            var nodes = cluster.nodes({name: 'root', children: findNodes(subjects)});
+                            var links = subjects.buildEdges().map(function(edge) {
                                 var source, target;
 
                                 for (var i = 0; i < nodes.length; i++) {
-                                    if (edge.from.Name == nodes[i].name) {
+                                    if (edge.from.$id == nodes[i].id) {
                                         source = nodes[i];
                                     }
-                                    if (edge.to.Name == nodes[i].name) {
+                                    if (edge.to.$id == nodes[i].id) {
                                         target = nodes[i];
                                     }
 
