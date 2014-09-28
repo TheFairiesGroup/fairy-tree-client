@@ -28,7 +28,7 @@
 
                             var line = d3.svg.line.radial()
                                 .interpolate("bundle")
-                                .tension(.85)
+                                .tension(0.25)
                                 .radius(function(d) {
                                     return d.y;
                                 })
