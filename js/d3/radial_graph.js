@@ -1,15 +1,15 @@
 (function() {
-    angular.module('fairyTree.directives', ['d3']).directive('radialGraph', ['$window', '$timeout', 'd3Service',
-        function($window, $timeout, d3Service) {
+    angular.module('fairyTree.directives', ['d3', 'fairyTree.factories']).directive('radialGraph', ['$window', '$timeout', 'd3Service', '$u',
+        function($window, $timeout, d3Service, $u) {
             return {
                 restrict: 'A',
                 scope: {
-                    subjects: '='
+                    courses: '='
                 },
                 link: function($scope, element, attrs) {
                     d3Service.d3().then(function(d3) {
-                        $scope.subjects.$loaded(function(subjects) {
-                            if (!subjects.length) { return; }
+                        $scope.$watch('courses', function(courses) {
+                            if (!courses || !courses.length) { return; }
 
                             var diameter = 960,
                                 radius = diameter / 2,
@@ -61,19 +61,19 @@
                                 .attr("stop-color", "#E62020")
                                 .attr("stop-opacity", 1);
 
-                            var findNodes = function(subjects) {
-                                return subjects.map(function(subject) {
+                            var findNodes = function(courses) {
+                                return courses.map(function(current) {
                                     return {
-                                        name: subject._name,
+                                        name: current.display_name,
                                         parent: 'root',
-                                        id: subject.$id,
-                                        subject: subject
+                                        id: current.$id,
+                                        course: current
                                     };
                                 });
                             };
 
-                            var nodes = cluster.nodes({name: 'root', children: findNodes(subjects)});
-                            var links = subjects.buildEdges().map(function(edge) {
+                            var nodes = cluster.nodes({name: 'root', children: findNodes(courses)});
+                            var links = $u.buildEdges(courses).map(function(edge) {
                                 var source, target;
 
                                 for (var i = 0; i < nodes.length; i++) {

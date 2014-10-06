@@ -1,32 +1,34 @@
 (function() {
-    var controllers = angular.module("fairyTree.controllers", ["firebase", "fairyTree.factories"]);
+    var controllers = angular.module('fairyTree.controllers', ['firebase', 'fairyTree.factories']);
 
-    controllers.controller('MajorsController', function MajorsController($scope, $firebase) {
-        var refMajors = new Firebase("https://fairybase.firebaseio.com/Major");
-        $scope.majors = $firebase(refMajors).$asArray();
+    controllers.controller('MajorsController', function MajorsController($scope, $data) {
+        $scope.majors = $data.majors();
     });
 
-    controllers.controller('SubjectsController', ["$scope", "$firebase", "$routeParams", "graphFactory",
-        function SubjectsController($scope, $firebase, $routeParams, graphFactory) {
-            var refSubjects = new Firebase("https://fairybase.firebaseio.com/Subject");
+    controllers.controller('SubjectsController', ['$scope', '$firebase', '$routeParams', '$data', '$u',
+        function SubjectsController($scope, $firebase, $routeParams, $data, $u) {
+            var subjects = $data.subjects();
 
-            $scope.subjects = $firebase(refSubjects, {
-                arrayFactory: graphFactory
-            }).$asArray();
+            $data.coursesFor({majorId: $routeParams.majorId}).then(function(courses) {
+                subjects.$loaded().then(function() {
+                    courses.forEach(function(course) {
+                        course.subject = $u.findById(subjects, course.subject_id);
 
-            var refMajors = new Firebase("https://fairybase.firebaseio.com/Major");
+                        /* e.g. course.provides === course.subject.provides */
+                        ['provides', 'depends', 'description'].forEach(function(property) {
+                            Object.defineProperty(course, property, {get: function() { return this.subject[property]; }});
+                        });
+                    });
 
-            $scope.currentMajor = " ";
-            $scope.majors = $firebase(refMajors).$asArray();
-            $scope.majors.$loaded().then(function() {
-                $scope.currentMajor = $scope.majors.filter(function(major) {
-                    return major.$id === $routeParams.majorId;
-                })[0];
+                    $scope.courses = courses;
+                });
             });
 
-            $scope.select = function(subject) {
-                $scope.selected = subject;
-            };
+            $scope.majors = $data.majors();
+
+            $data.findMajor($routeParams.majorId).then(function(value) {
+                $scope.currentMajor = value;
+            });
         }
     ]);
 }());

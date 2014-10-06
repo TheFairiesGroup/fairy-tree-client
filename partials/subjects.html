@@ -1,5 +1,5 @@
 <div id="subjects-page">
-  <h1>{{currentMajor.display_name}}</h1>
+  <h1>{{currentMajor.display_name || 'Специалност'}}</h1>
 
   <p><a href="#">Назад</a></p>
 
@@ -9,5 +9,7 @@
     </li>
   </ul>
 
-  <div radial-graph subjects="subjects"></div>
+  <h2>{{courses.length || '?'}} курса</h2>
+
+  <div radial-graph courses="courses"></div>
 </div>
