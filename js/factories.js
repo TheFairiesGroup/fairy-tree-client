@@ -9,41 +9,39 @@
                     return (current.$id == id);
                 })[0];
             },
-            buildEdges: function(subjects) {
+            buildEdges: function(courses) {
                 var edges = [];
 
-                subjects.forEach(function(subjectA, i) {
+                courses.forEach(function(current, i) {
                     var connections = [],
-                        dependentTerms = subjectA.depends || [];
+                        dependancies = current.depends || [];
 
-                    var dependencies = subjects.filter(function(subjectB, j) {
-                        if (i === j) return false;
-
-                        if (!Array.isArray(subjectB.provides)) {
-                            subjectB.provides = [];
+                    var helpingCourses = courses.filter(function(course, j) {
+                        if (i === j || !course.provides) {
+                            return false;
                         }
 
-                        var commonTerms = [];
-                        dependentTerms.forEach(function(term) {
-                            if (subjectB.provides.indexOf(term) > -1) {
-                                commonTerms.push(term);
+                        var helpsWith = [];
+                        dependancies.forEach(function(term) {
+                            if (course.provides.indexOf(term) > -1) {
+                                helpsWith.push(term);
                                 return true;
                             }
                             return false;
                         });
 
-                        if (commonTerms && commonTerms.length > 0) {
-                            connections.push(commonTerms);
+                        if (helpsWith.length > 0) {
+                            connections.push(helpsWith);
                             return true;
                         }
 
                         return false;
                     })
 
-                    dependencies.forEach(function(dependency, i) {
+                    helpingCourses.forEach(function(dependency, i) {
                         edges.push({
                             from: dependency,
-                            to: subjectA,
+                            to: current,
                             connections: connections[i]
                         });
                     });
