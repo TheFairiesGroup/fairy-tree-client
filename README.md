@@ -21,3 +21,10 @@ displaying dependencies between courses for each major in FMI @ SU "St. Kliment 
     ln -s <path to project> ~/.pow/fairy-tree/public
 
     // and open http://fairy-tree.dev :)
+
+### Run with node
+
+    npm install http-server -g
+    http-server <path to project>
+
+    // and open http://0.0.0.0:8080/
