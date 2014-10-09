@@ -18,8 +18,13 @@
   <h2>Моля изберете специалността, която Ви интересува</h2>
 
   <p ng-repeat="major in majors">
+    {{major.display_name}}:
     <a href="#/major/{{major.$id}}" class="btn btn-default btn-group-justified">
-      {{major.display_name}}
+      Hierarchical edge bundling
+    </a>
+    &nbsp; &nbsp; &nbsp;
+    <a href="#/major_rttree/{{major.$id}}" class="btn btn-default btn-group-justified">
+      Reingold–Tilford Tree
     </a>
   </p>
 </div>
