@@ -7,6 +7,12 @@
 
     controllers.controller('SubjectsController', ['$scope', '$firebase', '$routeParams', '$data', '$u',
         function SubjectsController($scope, $firebase, $routeParams, $data, $u) {
+            $scope.majors = $data.majors();
+
+            $data.findMajor($routeParams.majorId).then(function(value) {
+                $scope.currentMajor = value;
+            });
+
             var subjects = $data.subjects();
 
             $data.coursesFor({majorId: $routeParams.majorId}).then(function(courses) {
@@ -24,11 +30,6 @@
                 });
             });
 
-            $scope.majors = $data.majors();
-
-            $data.findMajor($routeParams.majorId).then(function(value) {
-                $scope.currentMajor = value;
-            });
         }
     ]);
 }());
