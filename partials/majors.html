@@ -19,12 +19,8 @@
 
   <p ng-repeat="major in majors">
     {{major.display_name}}:
-    <a href="#/major/{{major.$id}}" class="btn btn-default btn-group-justified">
-      Hierarchical edge bundling
-    </a>
-    &nbsp; &nbsp; &nbsp;
-    <a href="#/major_rttree/{{major.$id}}" class="btn btn-default btn-group-justified">
-      Reingold–Tilford Tree
-    </a>
+    <a href="#/major/{{major.$id}}">Hierarchical edge bundling</a>
+    |
+    <a href="#/major_rttree/{{major.$id}}">Reingold–Tilford Tree</a>
   </p>
 </div>

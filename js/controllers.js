@@ -1,5 +1,5 @@
 (function() {
-    var controllers = angular.module('fairyTree.controllers', ['firebase', 'fairyTree.factories']);
+    var controllers = angular.module('fairyTree.controllers');
 
     controllers.controller('MajorsController', function MajorsController($scope, $data) {
         $scope.majors = $data.majors();
