@@ -1,9 +1,8 @@
 "use strict";
 
 (function() {
-    var app = angular.module("fairyTree", ["ngRoute", "fairyTree.controllers", "fairyTree.directives"]);
+    angular.module('fairyTree').config(["$routeProvider",
 
-    app.config(["$routeProvider",
         function($routeProvider) {
             $routeProvider
                 .when("/home", {
@@ -25,5 +24,6 @@
                     redirectTo: "/home"
                 });
         }
+
     ]);
 })();

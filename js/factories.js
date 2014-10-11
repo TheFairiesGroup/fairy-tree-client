@@ -1,6 +1,6 @@
 "use strict";
 (function() {
-    var factories = angular.module('fairyTree.factories', []);
+    var factories = angular.module('fairyTree.factories');
 
     factories.factory('$u', function() {
         return {

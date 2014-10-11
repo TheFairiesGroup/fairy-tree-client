@@ -1,5 +1,5 @@
 (function() {
-    angular.module('fairyTree.directives', ['d3', 'fairyTree.factories']).directive('radialGraph', ['$window', '$timeout', 'd3Service', '$u',
+    angular.module('fairyTree.directives').directive('radialGraph', ['$window', '$timeout', 'd3Service', '$u',
         function($window, $timeout, d3Service, $u) {
             return {
                 restrict: 'A',
