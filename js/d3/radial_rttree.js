@@ -38,6 +38,27 @@
                                 });
                             };
 
+                            // Define the gradient
+                            var gradient = svg.append("svg:defs")
+                                .append("svg:linearGradient")
+                                .attr("id", "gradient")
+                                .attr("x1", "0%")
+                                .attr("y1", "0%")
+                                .attr("x2", "100%")
+                                .attr("y2", "100%")
+                                .attr("spreadMethod", "pad");
+
+                            // Define the gradient colors
+                            gradient.append("svg:stop")
+                                .attr("offset", "0%")
+                                .attr("stop-color", "#74C365")
+                                .attr("stop-opacity", 1);
+
+                            gradient.append("svg:stop")
+                                .attr("offset", "100%")
+                                .attr("stop-color", "#E62020")
+                                .attr("stop-opacity", 1);
+
                             var nodes = tree.nodes({name: $scope.major.display_name, children: findNodes(courses)});
                             var links = $u.buildEdges(courses).map(function(edge) {
                                 var source, target;
@@ -65,7 +86,8 @@
                               .data(links)
                             .enter().append("path")
                               .attr("class", "link")
-                              .attr("d", diagonal);
+                              .attr("d", diagonal)
+                              .attr("stroke", 'url(#gradient)');
 
                             var node = svg.selectAll(".node")
                               .data(nodes)
