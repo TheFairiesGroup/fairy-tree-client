@@ -10,11 +10,11 @@
                     controller: "MajorsController"
                 })
                 .when("/major/:majorId", {
-                    templateUrl: "partials/subjects.html",
+                    templateUrl: "partials/radial_graph.html",
                     controller: "SubjectsController"
                 })
                 .when("/major_rttree/:majorId", {
-                    templateUrl: "partials/subjects_rttree.html",
+                    templateUrl: "partials/rttree.html",
                     controller: "SubjectsController"
                 })
                 .when("/about", {
