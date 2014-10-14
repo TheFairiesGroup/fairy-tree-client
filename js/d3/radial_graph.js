@@ -34,21 +34,22 @@
                                     return d.x / 180 * Math.PI;
                                 });
 
-                            var svg = d3.select(element[0]).append("svg")
-                                .attr("width", diameter)
-                                .attr("height", diameter)
+                            var svg = d3.select(element[0])
+                                .append("svg")
+                                    .attr("width", diameter)
+                                    .attr("height", diameter)
                                 .append("g")
-                                .attr("transform", "translate(" + radius + "," + radius + ")");
+                                    .attr("transform", "translate(" + radius + "," + radius + ")");
 
                             // Define the gradient
                             var gradient = svg.append("svg:defs")
                                 .append("svg:linearGradient")
-                                .attr("id", "gradient")
-                                .attr("x1", "0%")
-                                .attr("y1", "0%")
-                                .attr("x2", "100%")
-                                .attr("y2", "100%")
-                                .attr("spreadMethod", "pad");
+                                    .attr("id", "gradient")
+                                    .attr("x1", "0%")
+                                    .attr("y1", "0%")
+                                    .attr("x2", "100%")
+                                    .attr("y2", "100%")
+                                    .attr("spreadMethod", "pad");
 
                             // Define the gradient colors
                             gradient.append("svg:stop")
