@@ -112,8 +112,6 @@
                             }).on('mouseout', function() {
                                 svg.selectAll('.link').attr('stroke-opacity', 1)
                             });
-
-                            d3.select(self.frameElement).style("height", diameter + "px");
                         });
                     });
                 }
