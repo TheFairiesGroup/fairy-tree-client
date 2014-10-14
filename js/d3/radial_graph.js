@@ -96,41 +96,41 @@
                             });
 
                             svg.selectAll(".link")
-                                .data(bundle(links))
-                                .enter().append("path")
-                                .attr("class", "link")
-                                .attr("d", line)
-                                .attr("stroke", 'url(#gradient)');
+                                .data(bundle(links)).enter()
+                                .append("path")
+                                    .attr("class", "link")
+                                    .attr("d", line)
+                                    .attr("stroke", 'url(#gradient)');
 
                             svg.selectAll(".node")
                                 .data(nodes.filter(function(n) {
                                     return !n.children;
-                                }))
-                                .enter().append("g")
-                                .attr("class", "node")
-                                .attr("transform", function(d) {
-                                    return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")";
-                                })
+                                })).enter()
+                                .append("g")
+                                    .attr("class", "node")
+                                    .attr("transform", function(d) {
+                                        return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")";
+                                    })
                                 .append("text")
-                                .attr("dx", function(d) {
-                                    return d.x < 180 ? 8 : -8;
-                                })
-                                .attr("dy", ".31em")
-                                .attr("text-anchor", function(d) {
-                                    return d.x < 180 ? "start" : "end";
-                                })
-                                .attr("transform", function(d) {
-                                    return d.x < 180 ? null : "rotate(180)";
-                                })
-                                .text(function(d) {
-                                    return d.name;
-                                })
-                                .on('mouseover', function(d) {
-                                    svg.selectAll(".link")
-                                        .filter(function(data) { return (data[0].id != d.id && data[2].id != d.id) })
-                                        .attr('stroke-opacity', 0.1);
-                                })
-                                .on('mouseout', function() { svg.selectAll('.link').attr('stroke-opacity', 1) });
+                                    .attr("dx", function(d) {
+                                        return d.x < 180 ? 8 : -8;
+                                    })
+                                    .attr("dy", ".31em")
+                                    .attr("text-anchor", function(d) {
+                                        return d.x < 180 ? "start" : "end";
+                                    })
+                                    .attr("transform", function(d) {
+                                        return d.x < 180 ? null : "rotate(180)";
+                                    })
+                                    .text(function(d) {
+                                        return d.name;
+                                    })
+                                    .on('mouseover', function(d) {
+                                        svg.selectAll(".link")
+                                            .filter(function(data) { return (data[0].id != d.id && data[2].id != d.id) })
+                                            .attr('stroke-opacity', 0.1);
+                                    })
+                                    .on('mouseout', function() { svg.selectAll('.link').attr('stroke-opacity', 1) });
 
                             d3.select(self.frameElement).style("height", diameter + "px");
                         });
