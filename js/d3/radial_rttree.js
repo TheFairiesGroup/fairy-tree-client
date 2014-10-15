@@ -27,15 +27,21 @@
                                 .append("g")
                                     .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
-                            var findNodes = function(courses) {
-                                return courses.map(function(current) {
+                            var buildChildren = function(root, courses, level) {
+                                if(level > 2) return [];
+                                return _.chain(courses).map(function(current) {
+                                    var outgoing = _.intersection(root.provides, current.depends);
+                                    var incoming = _.intersection(root.depends, current.provides);
+
+                                    if(!incoming.length && !outgoing.length) return undefined;
+
                                     return {
                                         name: current.display_name,
-                                        parent: 'root',
                                         id: current.$id,
-                                        course: current
+                                        course: current,
+                                        children: buildChildren(current, courses, level + 1)
                                     };
-                                });
+                                }).compact().value();
                             };
 
                             // Define the gradient
@@ -59,28 +65,11 @@
                                 .attr("stop-color", "#E62020")
                                 .attr("stop-opacity", 1);
 
-                            var nodes = tree.nodes({name: $scope.major.display_name, children: findNodes(courses)});
-                            var links = $u.buildEdges(courses).map(function(edge) {
-                                var source, target;
+                            var children1st = buildChildren(courses[0], courses, 0);
+                            console.log(children1st);
 
-                                for (var i = 0; i < nodes.length; i++) {
-                                    if (edge.from.$id == nodes[i].id) {
-                                        source = nodes[i];
-                                    }
-                                    if (edge.to.$id == nodes[i].id) {
-                                        target = nodes[i];
-                                    }
-
-                                    if (source && target) { break; }
-                                };
-
-                                if (!(source && target)) { debugger; }
-
-                                return {
-                                    source: source,
-                                    target: target,
-                                };
-                            });
+                            var nodes = tree.nodes({name: courses[0].display_name, children: children1st});
+                            var links = tree.links(nodes);
 
                             var link = svg.selectAll(".link")
                                 .data(links).enter()
