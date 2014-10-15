@@ -67,6 +67,18 @@
 
                             // TODO: function to calculate all "initial nodes"
                             // and build trees from all of them
+                            var root = courses[0];
+                            root.name = root.display_name = root.id = 'root';
+                            root.depends = [];
+                            root.provides ['root'];
+                            
+                            courses = courses.map(function(c) {
+                                if(!c.depends || c.depends.length == 0)
+                                    c.depends = ['root'];
+                                return c;
+                            });
+                            courses.unshift(root);
+
                             var children1st = buildChildren(courses[0], courses, 0);
                             console.log(children1st);
 
