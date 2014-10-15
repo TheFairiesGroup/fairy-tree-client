@@ -28,18 +28,18 @@
                                     .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
                             var buildChildren = function(root, courses, level) {
-                                if(level > 2) return [];
+                                //if(level > 2) return [];
                                 return _.chain(courses).map(function(current) {
                                     var outgoing = _.intersection(root.provides, current.depends);
                                     var incoming = _.intersection(root.depends, current.provides);
 
-                                    if(!incoming.length && !outgoing.length) return undefined;
+                                    if(/*!incoming.length &&*/ !outgoing.length) return undefined;
 
                                     return {
                                         name: current.display_name,
                                         id: current.$id,
                                         course: current,
-                                        children: buildChildren(current, courses, level + 1)
+                                        children: buildChildren(current, _.without(courses, root), level + 1)
                                     };
                                 }).compact().value();
                             };
@@ -65,11 +65,13 @@
                                 .attr("stop-color", "#E62020")
                                 .attr("stop-opacity", 1);
 
+                            // TODO: function to calculate all "initial nodes"
+                            // and build trees from all of them
                             var children1st = buildChildren(courses[0], courses, 0);
                             console.log(children1st);
 
                             var nodes = tree.nodes({name: courses[0].display_name, children: children1st});
-                            var links = tree.links(nodes);
+                            var links = tree.links(nodes)
 
                             var link = svg.selectAll(".link")
                                 .data(links).enter()
