@@ -18,6 +18,7 @@
     "angularfire": "~0.8",
     "angular-route": "~1.2",
     "pace": "~0.5",
-    "normalize.css": "~3.0.1"
+    "normalize.css": "~3.0.1",
+    "underscore": "~1.7.0"
   }
 }
