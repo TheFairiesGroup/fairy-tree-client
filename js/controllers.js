@@ -1,6 +1,12 @@
 (function() {
     var controllers = angular.module('fairyTree.controllers');
 
+    controllers.controller('CacheController', function CacheController($cache, $location) {
+        $cache.purge();
+
+        $location.path('/home');
+    });
+
     controllers.controller('MajorsController', function MajorsController($scope, $data) {
         $data.loadMajors().then(function(majors) {
             $scope.majors = majors;
