@@ -2,21 +2,23 @@
     var controllers = angular.module('fairyTree.controllers');
 
     controllers.controller('MajorsController', function MajorsController($scope, $data) {
-        $scope.majors = $data.majors();
+        $data.loadMajors().then(function(majors) {
+            $scope.majors = majors;
+        });
     });
 
     controllers.controller('SubjectsController', ['$scope', '$firebase', '$routeParams', '$data', '$u',
         function SubjectsController($scope, $firebase, $routeParams, $data, $u) {
-            $scope.majors = $data.majors();
+            $data.loadMajors().then(function(majors) {
+                $scope.majors = majors;
+            });
 
             $data.findMajor($routeParams.majorId).then(function(value) {
                 $scope.currentMajor = value;
             });
 
-            var subjects = $data.subjects();
-
-            $data.coursesFor({majorId: $routeParams.majorId}).then(function(courses) {
-                subjects.$loaded().then(function() {
+            $data.loadCoursesFor({majorId: $routeParams.majorId}).then(function(courses) {
+                $data.loadSubjects().then(function(subjects) {
                     courses.forEach(function(course) {
                         course.subject = $u.findById(subjects, course.subject_id);
 
