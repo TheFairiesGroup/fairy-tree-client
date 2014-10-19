@@ -5,6 +5,10 @@
 
         function($routeProvider) {
             $routeProvider
+                .when('/refresh', {
+                    templateUrl: "partials/majors.html",
+                    controller: "CacheController"
+                })
                 .when("/home", {
                     templateUrl: "partials/majors.html",
                     controller: "MajorsController"

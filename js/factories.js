@@ -52,18 +52,80 @@
         };
     });
 
-    factories.factory('$data', function($firebase, $q, $u) {
+    factories.factory('$cache', function() {
+        var cacheFactory = {
+            get: function(key) {
+                if (this.cache[key]) {
+                    return angular.copy(this.cache[key]);
+                }
+
+                if (localStorage) {
+                    var jsonString = localStorage[key];
+
+                    if (jsonString) {
+                        try {
+                            return JSON.parse(jsonString);
+                        } catch(e) {}
+                    }
+                }
+            },
+            set: function(key, value) {
+                this.cache[key] = angular.copy(value);
+
+                if (localStorage) {
+                    try {
+                        localStorage[key] = JSON.stringify(value);
+                    } catch(e) {}
+                }
+
+                return this;
+            },
+            purge: function() {
+                this.cache = {};
+
+                if (localStorage) {
+                    localStorage.clear();
+                }
+            }
+        };
+
+        cacheFactory.cache = {};
+
+        return cacheFactory;
+    });
+
+    factories.factory('$data', function($firebase, $q, $u, $cache) {
+        var asPromise = function(value) {
+            var deferred = $q.defer();
+
+            setTimeout(function() { deferred.resolve(value) }, 0);
+
+            return deferred.promise;
+        };
+
+        var fetchData = function(key) {
+            var data = $cache.get(key)
+            if (data) { return asPromise(data); }
+
+            var ref = new Firebase("https://fairybase.firebaseio.com/" + key);
+
+            data = $firebase(ref).$asArray();
+
+            data.$loaded().then(function() {
+                $cache.set(key, data);
+            });
+
+            return data.$loaded();
+        };
+
         return {
-            majors: function() {
-                var ref = new Firebase("https://fairybase.firebaseio.com/Major");
-                return $firebase(ref).$asArray();
+            loadMajors: function() {
+                return fetchData('Major');
             },
             findMajor: function(id) {
                 var deferred = $q.defer();
 
-                var majors = this.majors();
-
-                majors.$loaded().then(function() {
+                this.loadMajors().then(function(majors) {
                     deferred.resolve(
                         $u.findById(majors, id)
                     )
@@ -71,19 +133,16 @@
 
                 return deferred.promise;
             },
-            subjects: function() {
-                var ref = new Firebase("https://fairybase.firebaseio.com/Subject");
-                return $firebase(ref).$asArray();
+            loadSubjects: function() {
+                return fetchData('Subject');
             },
-            courses: function() {
-                var ref = new Firebase("https://fairybase.firebaseio.com/Course");
-                return $firebase(ref).$asArray();
+            loadCourses: function() {
+                return fetchData('Course');
             },
-            coursesFor: function(query) {
+            loadCoursesFor: function(query) {
                 var deferred = $q.defer();
 
-                var courses = this.courses();
-                courses.$loaded().then(function() {
+                this.loadCourses().then(function(courses) {
                     deferred.resolve(
                         courses.filter(function(course) {
                             return (course.major_id == query.majorId);

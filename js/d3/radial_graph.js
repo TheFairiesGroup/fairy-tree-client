@@ -34,21 +34,22 @@
                                     return d.x / 180 * Math.PI;
                                 });
 
-                            var svg = d3.select(element[0]).append("svg")
-                                .attr("width", diameter)
-                                .attr("height", diameter)
+                            var svg = d3.select(element[0])
+                                .append("svg")
+                                    .attr("width", diameter)
+                                    .attr("height", diameter)
                                 .append("g")
-                                .attr("transform", "translate(" + radius + "," + radius + ")");
+                                    .attr("transform", "translate(" + radius + "," + radius + ")");
 
                             // Define the gradient
                             var gradient = svg.append("svg:defs")
                                 .append("svg:linearGradient")
-                                .attr("id", "gradient")
-                                .attr("x1", "0%")
-                                .attr("y1", "0%")
-                                .attr("x2", "100%")
-                                .attr("y2", "100%")
-                                .attr("spreadMethod", "pad");
+                                    .attr("id", "gradient")
+                                    .attr("x1", "0%")
+                                    .attr("y1", "0%")
+                                    .attr("x2", "100%")
+                                    .attr("y2", "100%")
+                                    .attr("spreadMethod", "pad");
 
                             // Define the gradient colors
                             gradient.append("svg:stop")
@@ -67,7 +68,8 @@
                                         name: current.display_name,
                                         parent: 'root',
                                         id: current.$id,
-                                        course: current
+                                        course: current,
+                                        size: Math.round(Math.random() * 10000)
                                     };
                                 });
                             };
@@ -95,15 +97,18 @@
                                 };
                             });
 
-                            svg.selectAll(".link")
-                                .data(bundle(links)).enter()
+                            var link = svg.selectAll(".link");
+
+                            link.data(bundle(links)).enter()
                                 .append("path")
+                                    .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
                                     .attr("class", "link")
                                     .attr("d", line)
                                     .attr("stroke", 'url(#gradient)');
 
-                            svg.selectAll(".node")
-                                .data(nodes.filter(function(n) {
+                            var node = svg.selectAll(".node");
+
+                            node.data(nodes.filter(function(n) {
                                     return !n.children;
                                 })).enter()
                                 .append("g")
@@ -127,12 +132,12 @@
                                     })
                                     .on('mouseover', function(d) {
                                         svg.selectAll(".link")
-                                            .filter(function(data) { return (data[0].id != d.id && data[2].id != d.id) })
+                                            .filter(function(l) {
+                                                return (l.target.id != d.id && l.source.id != d.id)
+                                            })
                                             .attr('stroke-opacity', 0.1);
                                     })
                                     .on('mouseout', function() { svg.selectAll('.link').attr('stroke-opacity', 1) });
-
-                            d3.select(self.frameElement).style("height", diameter + "px");
                         });
                     });
                 }

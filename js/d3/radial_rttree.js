@@ -27,15 +27,21 @@
                                 .append("g")
                                     .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
-                            var findNodes = function(courses) {
-                                return courses.map(function(current) {
+                            var buildChildren = function(root, courses, level) {
+                                //if(level > 2) return [];
+                                return _.chain(courses).map(function(current) {
+                                    var outgoing = _.intersection(root.provides, current.depends);
+                                    var incoming = _.intersection(root.depends, current.provides);
+
+                                    if(/*!incoming.length &&*/ !outgoing.length) return undefined;
+
                                     return {
                                         name: current.display_name,
-                                        parent: 'root',
                                         id: current.$id,
-                                        course: current
+                                        course: current,
+                                        children: buildChildren(current, _.without(courses, root), level + 1)
                                     };
-                                });
+                                }).compact().value();
                             };
 
                             // Define the gradient
@@ -59,28 +65,25 @@
                                 .attr("stop-color", "#E62020")
                                 .attr("stop-opacity", 1);
 
-                            var nodes = tree.nodes({name: $scope.major.display_name, children: findNodes(courses)});
-                            var links = $u.buildEdges(courses).map(function(edge) {
-                                var source, target;
-
-                                for (var i = 0; i < nodes.length; i++) {
-                                    if (edge.from.$id == nodes[i].id) {
-                                        source = nodes[i];
-                                    }
-                                    if (edge.to.$id == nodes[i].id) {
-                                        target = nodes[i];
-                                    }
-
-                                    if (source && target) { break; }
-                                };
-
-                                if (!(source && target)) { debugger; }
-
-                                return {
-                                    source: source,
-                                    target: target,
-                                };
+                            // TODO: function to calculate all "initial nodes"
+                            // and build trees from all of them
+                            var root = courses[0];
+                            root.name = root.display_name = root.id = 'root';
+                            root.depends = [];
+                            root.provides ['root'];
+                            
+                            courses = courses.map(function(c) {
+                                if(!c.depends || c.depends.length == 0)
+                                    c.depends = ['root'];
+                                return c;
                             });
+                            courses.unshift(root);
+
+                            var children1st = buildChildren(courses[0], courses, 0);
+                            console.log(children1st);
+
+                            var nodes = tree.nodes({name: courses[0].display_name, children: children1st});
+                            var links = tree.links(nodes)
 
                             var link = svg.selectAll(".link")
                                 .data(links).enter()
@@ -112,8 +115,6 @@
                             }).on('mouseout', function() {
                                 svg.selectAll('.link').attr('stroke-opacity', 1)
                             });
-
-                            d3.select(self.frameElement).style("height", diameter + "px");
                         });
                     });
                 }
