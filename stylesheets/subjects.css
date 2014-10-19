@@ -1,5 +1,6 @@
 /* line 1, ../sass/subjects.scss */
 .subjects-page {
-  width: 70%;
+  width: 50%;
+  min-width: 960px;
   margin: 0 auto;
 }
