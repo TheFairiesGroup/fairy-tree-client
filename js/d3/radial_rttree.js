@@ -67,22 +67,27 @@
 
                             // TODO: function to calculate all "initial nodes"
                             // and build trees from all of them
-                            var root = courses[0];
-                            root.name = root.display_name = root.id = 'root';
-                            root.depends = [];
-                            root.provides ['root'];
+                            var root = {
+                                $id: 'rootId',
+                                _name: 'root_name',
+                                display_name: $scope.major.display_name,
+                                depends: [],
+                                provides: ['root_link'],
+                                subject: {
+                                    $id: 'root_subject',
+                                    _name: 'root_subj_name'
+                                }
+                            };
                             
                             courses = courses.map(function(c) {
-                                if(!c.depends || c.depends.length == 0)
-                                    c.depends = ['root'];
+                                if(!c.subject.depends || c.subject.depends.length == 0)
+                                    c.subject.depends = ['root_link'];
                                 return c;
                             });
-                            courses.unshift(root);
 
-                            var children1st = buildChildren(courses[0], courses, 0);
-                            console.log(children1st);
+                            var children1st = buildChildren(root, courses, 0);
 
-                            var nodes = tree.nodes({name: courses[0].display_name, children: children1st});
+                            var nodes = tree.nodes({name: root.display_name, children: children1st});
                             var links = tree.links(nodes)
 
                             var link = svg.selectAll(".link")
