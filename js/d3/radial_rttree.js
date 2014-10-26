@@ -105,14 +105,20 @@
                                     .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
 
                             node.append("circle")
-                                .attr("r", 4.5)
-                                .attr("fill", function(d) { return d.size ? "#00" + (d.size + 10050).toString(16) : "red"; });
+                                    .attr("r", 4.5)
+                                    .attr("fill", function(d) { return d.size ? "#00" + (d.size + 10050).toString(16) : "red"; });
 
                             node.append("text")
-                                .attr("dy", ".31em")
-                                .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-                                .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
-                                .text(function(d) { return d.name; });
+                                    .attr("dy", ".31em")
+                                    .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+                                    .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
+                                    .text(function(d) { return d.name; })
+                                .append("title")
+                                    .text(function(d) {
+                                        if (d.course) {
+                                            return (d.course.description || '').split(' ').slice(0, 14).join(' ') + '...';
+                                        }
+                                    });
 
                             node.on('click', function(d) {
                                 $scope.selected = d.course;

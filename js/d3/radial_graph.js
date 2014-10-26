@@ -142,7 +142,13 @@
                                             })
                                             .attr('stroke-opacity', 0.1);
                                     })
-                                    .on('mouseout', function() { svg.selectAll('.link').attr('stroke-opacity', 1) });
+                                    .on('mouseout', function() { svg.selectAll('.link').attr('stroke-opacity', 1) })
+                                .append("title")
+                                    .text(function(d) {
+                                        if (d.course) {
+                                            return (d.course.description || '').split(' ').slice(0, 14).join(' ') + '...';
+                                        }
+                                    });
                         });
                     });
                 }
