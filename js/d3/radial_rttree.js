@@ -9,11 +9,21 @@
                     selected: '='
                 },
                 link: function($scope, element, attrs) {
+                    var currentDiameter = function() {
+                        var d = window.innerHeight;
+
+                        if (d < 900) {
+                            return 900;
+                        }
+
+                        return d;
+                    };
+
                     d3Service.d3().then(function(d3) {
                         $scope.$watch('courses', function(courses) {
                             if (!courses || !courses.length) { return; }
 
-                            var diameter = element[0].offsetWidth;
+                            var diameter = currentDiameter();
 
                             var tree = d3.layout.tree()
                                 .size([360, diameter / 2 - 120])
@@ -135,7 +145,7 @@
                             });
 
                             window.addEventListener('resize', function() {
-                                var w = element[0].offsetWidth;
+                                var w = currentDiameter();
                                 chart.attr('width', w).attr('height', w);
                             });
                         });

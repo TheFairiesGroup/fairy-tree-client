@@ -11,22 +11,25 @@
     margin: 0 auto;
 
     .column {
-      float: left;
-
       &.main {
-        min-width: 960px;
-        width: 75%;
+        float: left;
+        min-width: 900px;
+        max-width: 75%;
+
+        svg {
+          display: block;
+          margin: 0 auto;
+        }
       }
 
       &.small {
+        overflow: hidden;
         min-width: 305px;
-        width: 25%;
         min-height: 960px;
-        margin: 100px 0 0 0;
         background: white;
 
         section {
-          padding: 0 10px 0 5px;
+          padding: 10em 5em 0 5em;
         }
       }
     }

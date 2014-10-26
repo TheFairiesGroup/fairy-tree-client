@@ -8,11 +8,21 @@
                     selected: '='
                 },
                 link: function($scope, element, attrs) {
+                    var currentDiameter = function() {
+                        var d = window.innerHeight;
+
+                        if (d < 900) {
+                            return 900;
+                        }
+
+                        return d;
+                    };
+
                     d3Service.d3().then(function(d3) {
                         $scope.$watch('courses', function(courses) {
                             if (!courses || !courses.length) { return; }
 
-                            var diameter = element[0].offsetWidth,
+                            var diameter = currentDiameter(),
                                 radius = diameter / 2,
                                 innerRadius = radius - 120;
 
@@ -38,7 +48,7 @@
                             var chart = d3.select(element[0])
                                 .append("svg")
                                     .attr('viewBox', '0 0 ' + diameter + ' ' + diameter)
-                                    .attr('perserveAspectRatio', 'xMinYMid')
+                                    .attr('preserveAspectRatio', 'xMidYMid')
                                     .attr('class', 'chart')
                                     .attr('width', diameter)
                                     .attr('height', diameter);
@@ -154,7 +164,7 @@
                                     });
 
                             window.addEventListener('resize', function() {
-                                var w = element[0].offsetWidth;
+                                var w = currentDiameter();
                                 chart.attr('width', w).attr('height', w);
                             });
                         });
