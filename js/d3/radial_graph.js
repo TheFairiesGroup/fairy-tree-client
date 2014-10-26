@@ -1,10 +1,11 @@
 (function() {
-    angular.module('fairyTree.directives').directive('radialGraph', ['$window', '$timeout', 'd3Service', '$u',
-        function($window, $timeout, d3Service, $u) {
+    angular.module('fairyTree.directives').directive('radialGraph', ['d3Service', '$u',
+        function(d3Service, $u) {
             return {
                 restrict: 'A',
                 scope: {
-                    courses: '='
+                    courses: '=',
+                    selected: '='
                 },
                 link: function($scope, element, attrs) {
                     d3Service.d3().then(function(d3) {
@@ -129,6 +130,10 @@
                                     })
                                     .text(function(d) {
                                         return d.name;
+                                    })
+                                    .on('click', function(d) {
+                                        $scope.selected = d.course;
+                                        $scope.$apply();
                                     })
                                     .on('mouseover', function(d) {
                                         svg.selectAll(".link")

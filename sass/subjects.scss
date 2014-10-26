@@ -1,5 +1,16 @@
 .subjects-page {
   width: 50%;
   min-width: 960px;
-  margin: 0 auto;
+  min-height: 1440px;
+  margin: 0 auto 10em auto;
+}
+
+.course-info {
+  .depends {
+    color: #E62020;
+  }
+
+  .provides {
+    color: #189400;
+  }
 }

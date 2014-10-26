@@ -11,5 +11,7 @@
 
   <h2>{{courses.length || '?'}} курса</h2>
 
-  <div radial-graph courses="courses"></div>
+  <div radial-graph courses="courses" selected="$parent.selected"></div>
+
+  <div ng-include src="'partials/course_info.html'"></div>
 </div>

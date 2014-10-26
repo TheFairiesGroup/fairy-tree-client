@@ -1,0 +1,15 @@
+<section class="course-info" ng-show="selected">
+  <h2>{{selected.display_name}}</h2>
+
+  <simple-format text="selected.description"></simple-format>
+
+  <ul>
+    <li class="depends" ng-repeat="depends in selected.depends">
+      {{depends}}
+    </li>
+
+    <li class="provides" ng-repeat="provide in selected.provides">
+      {{provide}}
+    </li>
+  </ul>
+</section>
