@@ -16,6 +16,6 @@
   <div class="graph">
     <div radial-graph courses="courses" selected="selected" class="column main"></div>
 
-    <div ng-include src="'partials/course_info.html'" class="column small"></div>
+    <div ng-include ng-show="courses" src="'partials/course_info.html'" class="column small"></div>
   </div>
 </div>
