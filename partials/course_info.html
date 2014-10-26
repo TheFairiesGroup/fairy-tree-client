@@ -1,3 +1,11 @@
+<section ng-hide="selected">
+  <ul>
+    <li ng-repeat="course in courses">
+      {{course.display_name}}
+    </li>
+  </ul>
+</section>
+
 <section class="course-info" ng-show="selected">
   <h2>{{selected.display_name}}</h2>
 

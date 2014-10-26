@@ -1,8 +1,31 @@
 .subjects-page {
-  width: 50%;
-  min-width: 960px;
-  min-height: 1440px;
-  margin: 0 auto 10em auto;
+  .centered-content {
+    width: 50%;
+    min-width: 960px;
+    margin: 0 auto;
+  }
+
+  .graph {
+    min-height: 960px;
+    width: 1280px;
+    margin: 0 auto;
+
+    .column {
+      float: left;
+
+      &.main {
+        width: 960px;
+      }
+
+      &.small {
+        width: 305px;
+        min-height: 960px;
+        margin: 100px 0 0 0;
+        padding: 0 5px 0 10px;
+        background: white;
+      }
+    }
+  }
 }
 
 .course-info {

@@ -37,7 +37,6 @@
                     $scope.courses = courses;
                 });
             });
-
         }
     ]);
 }());

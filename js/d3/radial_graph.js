@@ -12,7 +12,7 @@
                         $scope.$watch('courses', function(courses) {
                             if (!courses || !courses.length) { return; }
 
-                            var diameter = 960,
+                            var diameter = 900,
                                 radius = diameter / 2,
                                 innerRadius = radius - 120;
 
