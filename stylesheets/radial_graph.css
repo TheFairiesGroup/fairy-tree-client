@@ -1,9 +1,11 @@
 /* line 1, ../sass/radial_graph.scss */
 .node {
   font-size: 1.3em;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+  cursor: pointer;
 }
 
-/* line 5, ../sass/radial_graph.scss */
+/* line 11, ../sass/radial_graph.scss */
 .link {
   fill: none;
 }

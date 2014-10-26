@@ -6,21 +6,45 @@ body {
   font-weight: 300;
 }
 
-/* line 8, ../sass/style.scss */
+@media (max-width: 3000px) {
+  /* line 9, ../sass/style.scss */
+  body {
+    font-size: 16px;
+  }
+}
+@media (max-width: 1920px) {
+  /* line 14, ../sass/style.scss */
+  body {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1680px) {
+  /* line 19, ../sass/style.scss */
+  body {
+    font-size: 12px;
+  }
+}
+@media (max-width: 1440px) {
+  /* line 24, ../sass/style.scss */
+  body {
+    font-size: 10px;
+  }
+}
+/* line 29, ../sass/style.scss */
 h1 {
   font-size: 4em;
   line-height: 1.2em;
   font-weight: 300;
 }
 
-/* line 14, ../sass/style.scss */
+/* line 35, ../sass/style.scss */
 h2 {
   font-size: 3.2em;
   line-height: 1.4em;
   font-weight: 300;
 }
 
-/* line 20, ../sass/style.scss */
+/* line 41, ../sass/style.scss */
 ul li,
 p {
   font-size: 1.6em;
@@ -28,19 +52,24 @@ p {
   font-weight: 300;
 }
 
-/* line 26, ../sass/style.scss */
+/* line 47, ../sass/style.scss */
 ul li {
   list-style-type: circle;
 }
 
-/* line 30, ../sass/style.scss */
+/* line 51, ../sass/style.scss */
 a {
   color: #2077cc;
   text-decoration: none;
   font-weight: normal;
 }
 
-/* line 35, ../sass/style.scss */
+/* line 56, ../sass/style.scss */
 a:hover {
   color: #000;
+}
+
+/* line 60, ../sass/style.scss */
+.ng-hide {
+  display: none !important;
 }

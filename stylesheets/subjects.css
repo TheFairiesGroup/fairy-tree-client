@@ -1,6 +1,43 @@
-/* line 1, ../sass/subjects.scss */
-.subjects-page {
+/* line 2, ../sass/subjects.scss */
+.subjects-page .centered-content {
   width: 50%;
   min-width: 960px;
   margin: 0 auto;
+}
+/* line 8, ../sass/subjects.scss */
+.subjects-page .graph {
+  min-height: 960px;
+  min-width: 1280px;
+  margin: 0 auto;
+}
+/* line 14, ../sass/subjects.scss */
+.subjects-page .graph .column.main {
+  float: left;
+  min-width: 900px;
+  max-width: 75%;
+}
+/* line 19, ../sass/subjects.scss */
+.subjects-page .graph .column.main svg {
+  display: block;
+  margin: 0 auto;
+}
+/* line 25, ../sass/subjects.scss */
+.subjects-page .graph .column.small {
+  overflow: hidden;
+  min-width: 305px;
+  min-height: 960px;
+  background: white;
+}
+/* line 31, ../sass/subjects.scss */
+.subjects-page .graph .column.small section {
+  padding: 10em 5em 0 5em;
+}
+
+/* line 40, ../sass/subjects.scss */
+.course-info .depends {
+  color: #E62020;
+}
+/* line 44, ../sass/subjects.scss */
+.course-info .provides {
+  color: #189400;
 }

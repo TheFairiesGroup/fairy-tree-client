@@ -1,0 +1,6 @@
+<p ng-repeat='lines in paragraphs track by $index'>
+  <span ng-repeat='line in lines track by $index'>
+    <br ng-hide='$first' />
+    {{ line }}
+  </span>
+</p>

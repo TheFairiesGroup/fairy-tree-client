@@ -5,14 +5,25 @@
                 restrict: 'A',
                 scope: {
                     courses: '=',
-                    major: '='
+                    major: '=',
+                    selected: '='
                 },
                 link: function($scope, element, attrs) {
+                    var currentDiameter = function() {
+                        var d = window.innerHeight;
+
+                        if (d < 900) {
+                            return 900;
+                        }
+
+                        return d;
+                    };
+
                     d3Service.d3().then(function(d3) {
                         $scope.$watch('courses', function(courses) {
                             if (!courses || !courses.length) { return; }
 
-                            var diameter = 960;
+                            var diameter = currentDiameter();
 
                             var tree = d3.layout.tree()
                                 .size([360, diameter / 2 - 120])
@@ -20,12 +31,15 @@
 
                             var diagonal = d3.svg.diagonal.radial().projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
 
-                            var svg = d3.select(element[0])
+                            var chart = d3.select(element[0])
                                 .append("svg")
-                                    .attr("width", diameter)
-                                    .attr("height", diameter)
-                                .append("g")
-                                    .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+                                    .attr('viewBox', '0 0 ' + diameter + ' ' + diameter)
+                                    .attr('perserveAspectRatio', 'xMinYMid')
+                                    .attr('class', 'chart')
+                                    .attr('width', diameter)
+                                    .attr('height', diameter);
+
+                            var svg = chart.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
                             var buildChildren = function(root, courses, level) {
                                 //if(level > 2) return [];
@@ -67,22 +81,27 @@
 
                             // TODO: function to calculate all "initial nodes"
                             // and build trees from all of them
-                            var root = courses[0];
-                            root.name = root.display_name = root.id = 'root';
-                            root.depends = [];
-                            root.provides ['root'];
-                            
+                            var root = {
+                                $id: 'rootId',
+                                _name: 'root_name',
+                                display_name: $scope.major.display_name,
+                                depends: [],
+                                provides: ['root_link'],
+                                subject: {
+                                    $id: 'root_subject',
+                                    _name: 'root_subj_name'
+                                }
+                            };
+
                             courses = courses.map(function(c) {
-                                if(!c.depends || c.depends.length == 0)
-                                    c.depends = ['root'];
+                                if(!c.subject.depends || c.subject.depends.length == 0)
+                                    c.subject.depends = ['root_link'];
                                 return c;
                             });
-                            courses.unshift(root);
 
-                            var children1st = buildChildren(courses[0], courses, 0);
-                            console.log(children1st);
+                            var children1st = buildChildren(root, courses, 0);
 
-                            var nodes = tree.nodes({name: courses[0].display_name, children: children1st});
+                            var nodes = tree.nodes({name: root.display_name, children: children1st});
                             var links = tree.links(nodes)
 
                             var link = svg.selectAll(".link")
@@ -99,21 +118,35 @@
                                     .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
 
                             node.append("circle")
-                                .attr("r", 4.5)
-                                .attr("fill", function(d) { return d.size ? "#00" + (d.size + 10050).toString(16) : "red"; });
+                                    .attr("r", 4.5)
+                                    .attr("fill", function(d) { return d.size ? "#00" + (d.size + 10050).toString(16) : "red"; });
 
                             node.append("text")
-                                .attr("dy", ".31em")
-                                .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-                                .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
-                                .text(function(d) { return d.name; });
+                                    .attr("dy", ".31em")
+                                    .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+                                    .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
+                                    .text(function(d) { return d.name; })
+                                .append("title")
+                                    .text(function(d) {
+                                        if (d.course) {
+                                            return (d.course.description || '').split(' ').slice(0, 14).join(' ') + '...';
+                                        }
+                                    });
 
-                            node.on('mouseover', function(d) {
+                            node.on('click', function(d) {
+                                $scope.selected = d.course;
+                                $scope.$apply();
+                            }).on('mouseover', function(d) {
                                 svg.selectAll(".link")
                                     .filter(function(data) { return (data.source.id != d.id && data.target.id != d.id) })
                                     .attr('stroke-opacity', 0.1);
                             }).on('mouseout', function() {
                                 svg.selectAll('.link').attr('stroke-opacity', 1)
+                            });
+
+                            window.addEventListener('resize', function() {
+                                var w = currentDiameter();
+                                chart.attr('width', w).attr('height', w);
                             });
                         });
                     });

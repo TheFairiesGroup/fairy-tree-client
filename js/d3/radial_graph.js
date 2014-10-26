@@ -1,17 +1,28 @@
 (function() {
-    angular.module('fairyTree.directives').directive('radialGraph', ['$window', '$timeout', 'd3Service', '$u',
-        function($window, $timeout, d3Service, $u) {
+    angular.module('fairyTree.directives').directive('radialGraph', ['d3Service', '$u',
+        function(d3Service, $u) {
             return {
                 restrict: 'A',
                 scope: {
-                    courses: '='
+                    courses: '=',
+                    selected: '='
                 },
                 link: function($scope, element, attrs) {
+                    var currentDiameter = function() {
+                        var d = window.innerHeight;
+
+                        if (d < 900) {
+                            return 900;
+                        }
+
+                        return d;
+                    };
+
                     d3Service.d3().then(function(d3) {
                         $scope.$watch('courses', function(courses) {
                             if (!courses || !courses.length) { return; }
 
-                            var diameter = 960,
+                            var diameter = currentDiameter(),
                                 radius = diameter / 2,
                                 innerRadius = radius - 120;
 
@@ -34,12 +45,15 @@
                                     return d.x / 180 * Math.PI;
                                 });
 
-                            var svg = d3.select(element[0])
+                            var chart = d3.select(element[0])
                                 .append("svg")
-                                    .attr("width", diameter)
-                                    .attr("height", diameter)
-                                .append("g")
-                                    .attr("transform", "translate(" + radius + "," + radius + ")");
+                                    .attr('viewBox', '0 0 ' + diameter + ' ' + diameter)
+                                    .attr('preserveAspectRatio', 'xMidYMid')
+                                    .attr('class', 'chart')
+                                    .attr('width', diameter)
+                                    .attr('height', diameter);
+
+                            var svg = chart.append("g").attr("transform", "translate(" + radius + "," + radius + ")");
 
                             // Define the gradient
                             var gradient = svg.append("svg:defs")
@@ -130,6 +144,10 @@
                                     .text(function(d) {
                                         return d.name;
                                     })
+                                    .on('click', function(d) {
+                                        $scope.selected = d.course;
+                                        $scope.$apply();
+                                    })
                                     .on('mouseover', function(d) {
                                         svg.selectAll(".link")
                                             .filter(function(l) {
@@ -137,7 +155,18 @@
                                             })
                                             .attr('stroke-opacity', 0.1);
                                     })
-                                    .on('mouseout', function() { svg.selectAll('.link').attr('stroke-opacity', 1) });
+                                    .on('mouseout', function() { svg.selectAll('.link').attr('stroke-opacity', 1) })
+                                .append("title")
+                                    .text(function(d) {
+                                        if (d.course) {
+                                            return (d.course.description || '').split(' ').slice(0, 14).join(' ') + '...';
+                                        }
+                                    });
+
+                            window.addEventListener('resize', function() {
+                                var w = currentDiameter();
+                                chart.attr('width', w).attr('height', w);
+                            });
                         });
                     });
                 }

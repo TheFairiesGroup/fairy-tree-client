@@ -1,15 +1,21 @@
 <div class="subjects-page">
-  <h1>{{currentMajor.display_name || 'Специалност'}}</h1>
+  <div class="centered-content">
+    <h1>{{currentMajor.display_name || 'Специалност'}}</h1>
 
-  <p><a href="#">Назад</a></p>
+    <p><a href="#">Назад</a></p>
 
-  <ul class="dropdown-menu" role="menu">
-    <li ng-repeat="major in majors">
-      <a href="#/major_rttree/{{major.$id}}">{{major.display_name}}</a>
-    </li>
-  </ul>
+    <ul class="dropdown-menu" role="menu">
+      <li ng-repeat="major in majors">
+        <a href="#/major_rttree/{{major.$id}}">{{major.display_name}}</a>
+      </li>
+    </ul>
 
-  <h2>{{courses.length || '?'}} курса</h2>
+    <h2>{{courses.length || '?'}} курса</h2>
+  </div>
 
-  <div radial-rttree courses="courses" major="currentMajor"></div>
+  <div class="graph">
+    <div radial-rttree courses="courses" major="currentMajor" selected="selected" class="column main"></div>
+
+    <div ng-include ng-show="courses" src="'partials/course_info.html'" class="column small"></div>
+  </div>
 </div>

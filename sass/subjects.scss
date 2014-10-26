@@ -1,5 +1,47 @@
 .subjects-page {
-  width: 50%;
-  min-width: 960px;
-  margin: 0 auto;
+  .centered-content {
+    width: 50%;
+    min-width: 960px;
+    margin: 0 auto;
+  }
+
+  .graph {
+    min-height: 960px;
+    min-width: 1280px;
+    margin: 0 auto;
+
+    .column {
+      &.main {
+        float: left;
+        min-width: 900px;
+        max-width: 75%;
+
+        svg {
+          display: block;
+          margin: 0 auto;
+        }
+      }
+
+      &.small {
+        overflow: hidden;
+        min-width: 305px;
+        min-height: 960px;
+        background: white;
+
+        section {
+          padding: 10em 5em 0 5em;
+        }
+      }
+    }
+  }
+}
+
+.course-info {
+  .depends {
+    color: #E62020;
+  }
+
+  .provides {
+    color: #189400;
+  }
 }
