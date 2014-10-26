@@ -4,7 +4,7 @@
   <simple-format text="selected.description"></simple-format>
 
   <ul>
-    <li class="depends" ng-repeat="depends in selected.depends">
+    <li class="depends" ng-repeat="depends in selected.depends" ng-if="depends != 'root_link'">
       {{depends}}
     </li>
 

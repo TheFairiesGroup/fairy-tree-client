@@ -11,5 +11,7 @@
 
   <h2>{{courses.length || '?'}} курса</h2>
 
-  <div radial-rttree courses="courses" major="currentMajor"></div>
+  <div radial-rttree courses="courses" major="currentMajor" selected="$parent.selected"></div>
+
+  <div ng-include src="'partials/course_info.html'"></div>
 </div>

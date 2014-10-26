@@ -5,7 +5,8 @@
                 restrict: 'A',
                 scope: {
                     courses: '=',
-                    major: '='
+                    major: '=',
+                    selected: '='
                 },
                 link: function($scope, element, attrs) {
                     d3Service.d3().then(function(d3) {
@@ -78,7 +79,7 @@
                                     _name: 'root_subj_name'
                                 }
                             };
-                            
+
                             courses = courses.map(function(c) {
                                 if(!c.subject.depends || c.subject.depends.length == 0)
                                     c.subject.depends = ['root_link'];
@@ -113,7 +114,10 @@
                                 .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
                                 .text(function(d) { return d.name; });
 
-                            node.on('mouseover', function(d) {
+                            node.on('click', function(d) {
+                                $scope.selected = d.course;
+                                $scope.$apply();
+                            }).on('mouseover', function(d) {
                                 svg.selectAll(".link")
                                     .filter(function(data) { return (data.source.id != d.id && data.target.id != d.id) })
                                     .attr('stroke-opacity', 0.1);
