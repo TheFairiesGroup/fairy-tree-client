@@ -12,7 +12,7 @@
                         $scope.$watch('courses', function(courses) {
                             if (!courses || !courses.length) { return; }
 
-                            var diameter = 900,
+                            var diameter = element[0].offsetWidth,
                                 radius = diameter / 2,
                                 innerRadius = radius - 120;
 
@@ -35,12 +35,15 @@
                                     return d.x / 180 * Math.PI;
                                 });
 
-                            var svg = d3.select(element[0])
-                                .append("svg")
-                                    .attr("width", diameter)
-                                    .attr("height", diameter)
-                                .append("g")
-                                    .attr("transform", "translate(" + radius + "," + radius + ")");
+							var chart = d3.select(element[0])
+								.append("svg")
+									.attr('viewBox', '0 0 ' + diameter + ' ' + diameter)
+								    .attr('perserveAspectRatio', 'xMinYMid')
+									.attr('class', 'chart')
+									.attr('width', diameter)
+									.attr('height', diameter);
+
+                            var svg = chart.append("g").attr("transform", "translate(" + radius + "," + radius + ")");
 
                             // Define the gradient
                             var gradient = svg.append("svg:defs")
@@ -149,6 +152,11 @@
                                             return (d.course.description || '').split(' ').slice(0, 14).join(' ') + '...';
                                         }
                                     });
+
+							window.addEventListener('resize', function() {
+								var w = element[0].offsetWidth;
+								chart.attr('width', w).attr('height', w);
+							});
                         });
                     });
                 }

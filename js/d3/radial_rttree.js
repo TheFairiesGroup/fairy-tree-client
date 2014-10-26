@@ -13,7 +13,7 @@
                         $scope.$watch('courses', function(courses) {
                             if (!courses || !courses.length) { return; }
 
-                            var diameter = 960;
+                            var diameter = element[0].offsetWidth;
 
                             var tree = d3.layout.tree()
                                 .size([360, diameter / 2 - 120])
@@ -21,12 +21,15 @@
 
                             var diagonal = d3.svg.diagonal.radial().projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
 
-                            var svg = d3.select(element[0])
-                                .append("svg")
-                                    .attr("width", diameter)
-                                    .attr("height", diameter)
-                                .append("g")
-                                    .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+							var chart = d3.select(element[0])
+								.append("svg")
+									.attr('viewBox', '0 0 ' + diameter + ' ' + diameter)
+								    .attr('perserveAspectRatio', 'xMinYMid')
+									.attr('class', 'chart')
+									.attr('width', diameter)
+									.attr('height', diameter);
+
+                            var svg = chart.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
                             var buildChildren = function(root, courses, level) {
                                 //if(level > 2) return [];
@@ -130,6 +133,11 @@
                             }).on('mouseout', function() {
                                 svg.selectAll('.link').attr('stroke-opacity', 1)
                             });
+
+							window.addEventListener('resize', function() {
+								var w = element[0].offsetWidth;
+								chart.attr('width', w).attr('height', w);
+							});
                         });
                     });
                 }

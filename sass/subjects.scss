@@ -7,22 +7,27 @@
 
   .graph {
     min-height: 960px;
-    width: 1280px;
+    min-width: 1280px;
     margin: 0 auto;
 
     .column {
       float: left;
 
       &.main {
-        width: 960px;
+        min-width: 960px;
+				width: 75%;
       }
 
       &.small {
-        width: 305px;
+        min-width: 305px;
+				width: 25%;
         min-height: 960px;
         margin: 100px 0 0 0;
-        padding: 0 5px 0 10px;
         background: white;
+
+				section {
+					padding: 0 10px 0 5px;
+				}
       }
     }
   }
