@@ -44,6 +44,8 @@
                             var buildChildren = function(root, courses, level) {
                                 //if(level > 2) return [];
                                 return _.chain(courses).map(function(current) {
+                                    if (root.$id == current.$id) { return undefined; }
+
                                     var outgoing = _.intersection(root.provides, current.depends);
                                     var incoming = _.intersection(root.depends, current.provides);
 
