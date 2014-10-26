@@ -15,19 +15,19 @@
 
       &.main {
         min-width: 960px;
-				width: 75%;
+        width: 75%;
       }
 
       &.small {
         min-width: 305px;
-				width: 25%;
+        width: 25%;
         min-height: 960px;
         margin: 100px 0 0 0;
         background: white;
 
-				section {
-					padding: 0 10px 0 5px;
-				}
+        section {
+          padding: 0 10px 0 5px;
+        }
       }
     }
   }

@@ -35,13 +35,13 @@
                                     return d.x / 180 * Math.PI;
                                 });
 
-							var chart = d3.select(element[0])
-								.append("svg")
-									.attr('viewBox', '0 0 ' + diameter + ' ' + diameter)
-								    .attr('perserveAspectRatio', 'xMinYMid')
-									.attr('class', 'chart')
-									.attr('width', diameter)
-									.attr('height', diameter);
+                            var chart = d3.select(element[0])
+                                .append("svg")
+                                    .attr('viewBox', '0 0 ' + diameter + ' ' + diameter)
+                                    .attr('perserveAspectRatio', 'xMinYMid')
+                                    .attr('class', 'chart')
+                                    .attr('width', diameter)
+                                    .attr('height', diameter);
 
                             var svg = chart.append("g").attr("transform", "translate(" + radius + "," + radius + ")");
 
@@ -153,10 +153,10 @@
                                         }
                                     });
 
-							window.addEventListener('resize', function() {
-								var w = element[0].offsetWidth;
-								chart.attr('width', w).attr('height', w);
-							});
+                            window.addEventListener('resize', function() {
+                                var w = element[0].offsetWidth;
+                                chart.attr('width', w).attr('height', w);
+                            });
                         });
                     });
                 }
