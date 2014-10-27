@@ -17,6 +17,7 @@
 
   <h2>Моля изберете специалността, която Ви интересува</h2>
 
+  <p class="loading" ng-hide="majors.length">Зареждане...</p>
   <p ng-repeat="major in majors">
     {{major.display_name}}:
     <a href="#/major/{{major.$id}}">Hierarchical edge bundling</a>

@@ -19,7 +19,8 @@
       </a>
     </div>
 
-    <h2>{{courses.length || '?'}} курса</h2>
+    <p class="loading" ng-hide="courses">Зареждане...</p>
+    <h2 ng-show="courses">{{courses.length || '?'}} курса</h2>
   </div>
 
   <div class="graph">
