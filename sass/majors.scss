@@ -1,4 +1,24 @@
 #majors-page {
-  width: 55%;
-  margin: 0 auto;
+  .slide-welcome {
+    h1 {
+      font-size: 5em;
+    }
+
+    padding: 20em 0;
+    text-align: center;
+    min-height: 30em;
+  }
+
+  .slide-majors {
+    p {
+      font-size: 2.4em;
+
+      a {
+        font-weight: 300;
+      }
+    }
+
+    text-align: center;
+    padding-bottom: 20em;
+  }
 }

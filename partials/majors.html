@@ -1,29 +1,20 @@
 <div id="majors-page">
-  <main role="main">
+  <main class="slide-welcome" role="main">
     <div class="content">
-      <h1>Какво ще научите във ФМИ?</h1>
+      <h1>Какво щe науча във ФМИ?</h1>
 
       <p>
-        Ако някога сте се чудили защо учите дадени предмети, това е мястото,
-        където ще получите нужните отговори. Ще разберете връзките между
-        изучваните предмети и какви възможности за развитие разкрива пред Вас.
-      </p>
-
-      <p>
-        <a href="#/about" >Повече информация за проекта</a>
+        Този проект е с отворен код. Ако искате да помогнете: <a href="https://github.com/TheFairiesGroup/fairy-tree-client/issues">привет</a>.<br/>
+        Ако се чудите къде да ни намерите <a href="mailto:thefairies@gmail.com"><abbr title="send pigeon here">thefairies@gmail.com</abbr></a><br/>
+        Ако се чудите какво може да научите във ФМИ слезте надолу.
       </p>
     </div>
   </main>
 
-  <h2>Моля изберете специалността, която Ви интересува</h2>
-
-  <p class="loading" ng-hide="majors.length">Зареждане...</p>
-  <p ng-repeat="major in majors">
-    {{major.display_name}}:
-    <a href="#/major/{{major.$id}}">Hierarchical edge bundling</a>
-    |
-    <a href="#/major_rttree/{{major.$id}}">Reingold–Tilford Tree</a>
-  </p>
-
-  <p style="text-align: right"><a href="#/refresh">Refresh Cache ⟳</a></p>
+  <div class="slide-majors">
+    <p class="loading" ng-hide="majors.length">Зареждане...</p>
+    <p ng-repeat="major in majors">
+      <a href="#/major_rttree/{{major.$id}}">{{major.display_name}}</a>
+    </p>
+  </div>
 </div>
