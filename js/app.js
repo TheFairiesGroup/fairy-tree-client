@@ -18,7 +18,7 @@
                     controller: "SubjectsController"
                 })
                 .when("/major_rttree/:majorId", {
-                    templateUrl: "partials/rttree.html",
+                    templateUrl: "partials/radial_rttree.html",
                     controller: "SubjectsController"
                 })
                 .when("/about", {
