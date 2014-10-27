@@ -34,7 +34,7 @@
                             var chart = d3.select(element[0])
                                 .append("svg")
                                     .attr('viewBox', '0 0 ' + diameter + ' ' + diameter)
-                                    .attr('perserveAspectRatio', 'xMinYMid')
+                                    .attr('preserveAspectRatio', 'xMidYMid')
                                     .attr('class', 'chart')
                                     .attr('width', diameter)
                                     .attr('height', diameter);

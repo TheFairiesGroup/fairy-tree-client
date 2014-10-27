@@ -5,6 +5,16 @@
     margin: 0 auto;
   }
 
+  .view-button {
+    border-width: 2px;
+    border-style: outset;
+    border-color: gray;
+
+    &.active {
+      border-color: coral;
+    }
+  }
+
   .graph {
     min-height: 960px;
     min-width: 1280px;
