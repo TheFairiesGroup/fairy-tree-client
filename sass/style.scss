@@ -32,6 +32,11 @@ h1 {
   font-weight: 300;
 }
 
+h1 abbr[title] {
+  border: none;
+  text-decoration: none;
+}
+
 h2 {
   font-size: 3.2em;
   line-height: 1.4em;

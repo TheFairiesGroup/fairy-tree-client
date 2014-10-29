@@ -38,13 +38,19 @@ h1 {
 }
 
 /* line 35, ../sass/style.scss */
+h1 abbr[title] {
+  border: none;
+  text-decoration: none;
+}
+
+/* line 40, ../sass/style.scss */
 h2 {
   font-size: 3.2em;
   line-height: 1.4em;
   font-weight: 300;
 }
 
-/* line 41, ../sass/style.scss */
+/* line 46, ../sass/style.scss */
 ul li,
 p {
   font-size: 1.6em;
@@ -52,24 +58,24 @@ p {
   font-weight: 300;
 }
 
-/* line 47, ../sass/style.scss */
+/* line 52, ../sass/style.scss */
 ul li {
   list-style-type: circle;
 }
 
-/* line 51, ../sass/style.scss */
+/* line 56, ../sass/style.scss */
 a {
   color: #2077cc;
   text-decoration: none;
   font-weight: normal;
 }
 
-/* line 56, ../sass/style.scss */
+/* line 61, ../sass/style.scss */
 a:hover {
   color: #000;
 }
 
-/* line 60, ../sass/style.scss */
+/* line 65, ../sass/style.scss */
 .ng-hide {
   display: none !important;
 }
@@ -166,7 +172,7 @@ a:hover {
     transform: translateY(-1.5em);
   }
 }
-/* line 98, ../sass/style.scss */
+/* line 103, ../sass/style.scss */
 .scroll-indicator {
   display: block;
   width: 5em;
@@ -178,7 +184,7 @@ a:hover {
   content: ' ';
 }
 
-/* line 109, ../sass/style.scss */
+/* line 114, ../sass/style.scss */
 .scroll-indicator.bounce {
   -o-animation: bounce 2.5s infinite;
   -moz-animation: bounce 2.5s infinite;
