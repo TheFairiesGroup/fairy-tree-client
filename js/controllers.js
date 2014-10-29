@@ -7,7 +7,7 @@
         $location.path('/home');
     });
 
-    controllers.controller('MajorsController', function MajorsController($scope, $data) {
+    controllers.controller('MajorsController', function MajorsController($scope, $data, $window) {
         $data.loadMajors().then(function(majors) {
             $scope.majors = majors;
         });
