@@ -1,43 +1,51 @@
 /* line 2, ../sass/subjects.scss */
-.subjects-page .centered-content {
-  width: 50%;
-  min-width: 960px;
-  margin: 0 auto;
+.subjects-graph h1 {
+  text-align: center;
 }
-/* line 8, ../sass/subjects.scss */
-.subjects-page .graph {
+/* line 6, ../sass/subjects.scss */
+.subjects-graph .view-button {
+  border-width: 2px;
+  border-style: outset;
+  border-color: gray;
+}
+/* line 11, ../sass/subjects.scss */
+.subjects-graph .view-button.active {
+  border-color: coral;
+}
+/* line 16, ../sass/subjects.scss */
+.subjects-graph .graph {
   min-height: 960px;
   min-width: 1280px;
   margin: 0 auto;
 }
-/* line 14, ../sass/subjects.scss */
-.subjects-page .graph .column.main {
+/* line 22, ../sass/subjects.scss */
+.subjects-graph .graph .column.main {
   float: left;
   min-width: 900px;
   max-width: 75%;
 }
-/* line 19, ../sass/subjects.scss */
-.subjects-page .graph .column.main svg {
+/* line 27, ../sass/subjects.scss */
+.subjects-graph .graph .column.main svg {
   display: block;
   margin: 0 auto;
 }
-/* line 25, ../sass/subjects.scss */
-.subjects-page .graph .column.small {
+/* line 33, ../sass/subjects.scss */
+.subjects-graph .graph .column.small {
   overflow: hidden;
   min-width: 305px;
   min-height: 960px;
   background: white;
 }
-/* line 31, ../sass/subjects.scss */
-.subjects-page .graph .column.small section {
+/* line 39, ../sass/subjects.scss */
+.subjects-graph .graph .column.small section {
   padding: 10em 5em 0 5em;
 }
 
-/* line 40, ../sass/subjects.scss */
+/* line 48, ../sass/subjects.scss */
 .course-info .depends {
   color: #E62020;
 }
-/* line 44, ../sass/subjects.scss */
+/* line 52, ../sass/subjects.scss */
 .course-info .provides {
   color: #189400;
 }

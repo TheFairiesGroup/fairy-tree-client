@@ -1,0 +1,24 @@
+<div id="slides-page">
+  <main id="slide-welcome" role="main">
+    <div class="content">
+      <h1>Какво щe науча във ФМИ?</h1>
+
+      <p>
+        Този проект е с отворен код. Ако искате да помогнете: <a href="https://github.com/TheFairiesGroup/fairy-tree-client/issues">привет</a>.<br/>
+        Ако се чудите къде да ни намерите <a href="mailto:thefairies@gmail.com"><abbr title="send pigeon here">thefairies@gmail.com</abbr></a><br/>
+        Ако се чудите какво може да научите във ФМИ слезте надолу.
+      </p>
+
+      <div class="scroll-indicator bounce" scroll-to="#slide-majors"></div>
+    </div>
+  </main>
+
+  <div id="slide-majors">
+    <p class="loading" ng-hide="majors.length">Зареждане...</p>
+    <p ng-repeat="major in majors">
+      <a href="" ng-click="selectMajor(major.$id)" scroll-to="#slide-graph">{{major.display_name}}</a>
+    </p>
+  </div>
+
+  <div id="slide-graph" ng-include src="'partials/radial_rttree.html'"></div>
+</div>

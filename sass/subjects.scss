@@ -1,8 +1,16 @@
-.subjects-page {
-  .centered-content {
-    width: 50%;
-    min-width: 960px;
-    margin: 0 auto;
+.subjects-graph {
+  h1 {
+    text-align: center;
+  }
+
+  .view-button {
+    border-width: 2px;
+    border-style: outset;
+    border-color: gray;
+
+    &.active {
+      border-color: coral;
+    }
   }
 
   .graph {

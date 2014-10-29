@@ -14,6 +14,7 @@
     "tests"
   ],
   "dependencies": {
+    "jquery": "~2.1",
     "angular": "~1.2",
     "angularfire": "~0.8",
     "angular-route": "~1.2",

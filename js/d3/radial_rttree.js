@@ -31,10 +31,12 @@
 
                             var diagonal = d3.svg.diagonal.radial().projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
 
+                            d3.select(element[0]).selectAll('svg').remove();
+
                             var chart = d3.select(element[0])
                                 .append("svg")
                                     .attr('viewBox', '0 0 ' + diameter + ' ' + diameter)
-                                    .attr('perserveAspectRatio', 'xMinYMid')
+                                    .attr('preserveAspectRatio', 'xMidYMid')
                                     .attr('class', 'chart')
                                     .attr('width', diameter)
                                     .attr('height', diameter);
