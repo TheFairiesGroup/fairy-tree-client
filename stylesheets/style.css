@@ -171,7 +171,7 @@ a:hover {
   display: block;
   width: 5em;
   height: 5em;
-  background-image: url("/images/down_chevron.svg");
+  background-image: url("../images/down_chevron.svg");
   margin: 5em auto 0 auto;
   opacity: 0.5;
   cursor: pointer;
