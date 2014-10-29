@@ -6,11 +6,11 @@
         function($routeProvider) {
             $routeProvider
                 .when('/refresh', {
-                    templateUrl: "partials/majors.html",
+                    templateUrl: "partials/slides.html",
                     controller: "CacheController"
                 })
                 .when("/home", {
-                    templateUrl: "partials/majors.html",
+                    templateUrl: "partials/slides.html",
                     controller: "MajorsController"
                 })
                 .when("/major/:majorId", {
