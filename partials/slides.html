@@ -16,9 +16,9 @@
   <div id="slide-majors">
     <p class="loading" ng-hide="majors.length">Зареждане...</p>
     <p ng-repeat="major in majors">
-      <a ng-click="selectMajor(major.$id)">{{major.display_name}}</a>
+      <a href="" ng-click="selectMajor(major.$id)" scroll-to="#slide-graph">{{major.display_name}}</a>
     </p>
   </div>
 
-  <div id="slide-graph" ng-include ng-show="courses" src="'partials/radial_rttree.html'"></div>
+  <div id="slide-graph" ng-include src="'partials/radial_rttree.html'"></div>
 </div>
