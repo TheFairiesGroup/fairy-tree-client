@@ -1,4 +1,4 @@
-<div id="majors-page">
+<div id="slides-page">
   <main id="slide-welcome" role="main">
     <div class="content">
       <h1>Какво щe науча във ФМИ?</h1>
@@ -16,7 +16,9 @@
   <div id="slide-majors">
     <p class="loading" ng-hide="majors.length">Зареждане...</p>
     <p ng-repeat="major in majors">
-      <a href="#/major_rttree/{{major.$id}}">{{major.display_name}}</a>
+      <a ng-click="selectMajor(major.$id)">{{major.display_name}}</a>
     </p>
   </div>
+
+  <div id="slide-graph" ng-include ng-show="courses" src="'partials/radial_rttree.html'"></div>
 </div>

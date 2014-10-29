@@ -1,27 +1,5 @@
-<div class="subjects-page">
-  <div class="centered-content">
-    <h1>{{currentMajor.display_name || 'Специалност'}}</h1>
-
-    <p><a href="#">Назад</a></p>
-
-    <ul class="dropdown-menu" role="menu">
-      <li ng-repeat="major in majors">
-        <a href="#/major_rttree/{{major.$id}}">{{major.display_name}}</a>
-      </li>
-    </ul>
-
-    <div>
-      <a href="#/major/{{currentMajor.$id}}">
-        <img class="view-button" src="images/HEB_button.jpg">
-      </a>
-      <a href="#/major_rttree/{{currentMajor.$id}}">
-        <img class="view-button active" src="images/RTTree_button.jpg">
-      </a>
-    </div>
-
-    <p class="loading" ng-hide="courses">Зареждане...</p>
-    <h2 ng-show="courses">{{courses.length || '?'}} курса</h2>
-  </div>
+<div class="subjects-graph">
+  <h1>{{currentMajor.display_name || 'Специалност'}}</h1>
 
   <div class="graph">
     <div radial-rttree courses="courses" major="currentMajor" selected="selected" class="column main"></div>

@@ -5,24 +5,13 @@
 
         function($routeProvider) {
             $routeProvider
-                .when('/refresh', {
-                    templateUrl: "partials/slides.html",
-                    controller: "CacheController"
-                })
                 .when("/home", {
                     templateUrl: "partials/slides.html",
-                    controller: "MajorsController"
+                    controller: "MajorsController",
                 })
                 .when("/major/:majorId", {
-                    templateUrl: "partials/radial_graph.html",
-                    controller: "SubjectsController"
-                })
-                .when("/major_rttree/:majorId", {
-                    templateUrl: "partials/radial_rttree.html",
-                    controller: "SubjectsController"
-                })
-                .when("/about", {
-                    templateUrl: "partials/about.html"
+                    templateUrl: "partials/slides.html",
+                    controller: "MajorsController",
                 })
                 .otherwise({
                     redirectTo: "/home"

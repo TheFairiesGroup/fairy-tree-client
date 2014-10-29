@@ -45,6 +45,8 @@
                                     return d.x / 180 * Math.PI;
                                 });
 
+                            d3.select(element[0]).selectAll('svg').remove();
+
                             var chart = d3.select(element[0])
                                 .append("svg")
                                     .attr('viewBox', '0 0 ' + diameter + ' ' + diameter)
