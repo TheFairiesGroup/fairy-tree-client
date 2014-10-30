@@ -1,15 +1,31 @@
 #slides-page {
   #slide-welcome {
+    padding: 20em 0;
+    text-align: center;
+    min-height: 30em;
+
     h1 {
       font-size: 5em;
     }
 
-    padding: 20em 0;
-    text-align: center;
-    min-height: 30em;
+    p {
+      max-width: 40em;
+      margin: 0 auto;
+    }
+
+    p.about {
+      margin-bottom: 1.5em;
+    }
+
+    p.call-for-help {
+      font-size: 1.4em;
+    }
   }
 
   #slide-majors {
+    text-align: center;
+    padding: 10em 0 20em 0;
+
     p {
       font-size: 2.4em;
 
@@ -17,8 +33,5 @@
         font-weight: 300;
       }
     }
-
-    text-align: center;
-    padding: 10em 0 20em 0;
   }
 }

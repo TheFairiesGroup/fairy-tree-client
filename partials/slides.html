@@ -3,10 +3,13 @@
     <div class="content">
       <h1>Какво щe науча във <abbr title='Факултетът по математика и информатика на СУ "Св. Кл. Охридски"'>ФМИ</abbr>?</h1>
 
-      <p>
+      <p class="about">
+        Тук може да откриете информация за предметите, изучавани от различните специалности във <abbr title='Факултетът по математика и информатика на СУ "Св. Кл. Охридски"'>ФМИ</abbr>,
+        както и  взаимовръзката между тях.
+      </p>
+      <p class="call-for-help">
         Този проект е с отворен код. Ако искате да помогнете: <a href="https://github.com/TheFairiesGroup/fairy-tree-client/issues">привет</a>.<br/>
         Ако се чудите къде да ни намерите <a href="mailto:thefairies@gmail.com">thefairies@gmail.com</a><br/>
-        Информация за специалностите може да намерите по-долу.
       </p>
 
       <div class="scroll-indicator bounce" scroll-to="#slide-majors"></div>
@@ -20,7 +23,7 @@
     </p>
   </div>
 
-  <div id="slide-graph" >
+  <div id="slide-graph">
     <h1>{{currentMajor.display_name || 'Специалност'}}</h1>
     <div>
       <a href="" ng-click="view='heb'">
