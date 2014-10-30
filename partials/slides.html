@@ -25,13 +25,17 @@
 
   <div id="slide-graph">
     <h1>{{currentMajor.display_name || 'Специалност'}}</h1>
-    <div>
-      <a href="" ng-click="view='heb'">
-        <img class="view-button active" src="images/HEB_button.jpg">
-      </a>
-      <a href="" ng-click="view='rttree'">
-        <img class="view-button" src="images/RTTree_button.jpg">
-      </a>
+    <div class="graph-pickers">
+      <div>
+        <a href="" ng-click="view='heb'" ng-class="{active: view == 'heb'}">
+          <img class="view-button active" src="images/HEB_button.jpg">
+        </a>
+      </div>
+      <div>
+        <a href="" ng-click="view='rttree'" ng-class="{active: view == 'rttree'}">
+          <img class="view-button" src="images/RTTree_button.jpg">
+        </a>
+      </div>
     </div>
 
     <div ng-if="view=='rttree'" class="animate-if" ng-include src="'partials/radial_rttree.html'"></div>
