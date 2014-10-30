@@ -2,6 +2,8 @@
     var controllers = angular.module('fairyTree.controllers');
 
     controllers.controller('MajorsController', function MajorsController($scope, $data, $u, $routeParams) {
+        $data.checkCache();
+
         $data.loadMajors().then(function(majors) {
             $scope.majors = majors;
             $scope.view = 'rttree';
