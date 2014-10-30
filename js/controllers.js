@@ -4,6 +4,7 @@
     controllers.controller('MajorsController', function MajorsController($scope, $data, $u, $routeParams) {
         $data.loadMajors().then(function(majors) {
             $scope.majors = majors;
+            $scope.view = 'rttree';
 
             $scope.selectMajor = function(majorId) {
                 $scope.currentMajor = $u.findById($scope.majors, majorId);
