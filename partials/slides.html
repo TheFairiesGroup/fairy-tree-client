@@ -3,10 +3,13 @@
     <div class="content">
       <h1>Какво щe науча във <abbr title='Факултетът по математика и информатика на СУ "Св. Кл. Охридски"'>ФМИ</abbr>?</h1>
 
-      <p>
+      <p class="about">
+        Тук може да откриете информация за предметите, изучавани от различните специалности във <abbr title='Факултетът по математика и информатика на СУ "Св. Кл. Охридски"'>ФМИ</abbr>,
+        както и  взаимовръзката между тях.
+      </p>
+      <p class="call-for-help">
         Този проект е с отворен код. Ако искате да помогнете: <a href="https://github.com/TheFairiesGroup/fairy-tree-client/issues">привет</a>.<br/>
         Ако се чудите къде да ни намерите <a href="mailto:thefairies@gmail.com">thefairies@gmail.com</a><br/>
-        Информация за специалностите може да намерите по-долу.
       </p>
 
       <div class="scroll-indicator bounce" scroll-to="#slide-majors"></div>
@@ -20,5 +23,26 @@
     </p>
   </div>
 
-  <div id="slide-graph" ng-include src="'partials/radial_rttree.html'"></div>
+  <div id="slide-graph">
+    <p class="loading" ng-hide="courses.length">Зареждане...</p>
+
+    <div ng-show="courses.length">
+      <h1>{{currentMajor.display_name || 'Специалност'}}</h1>
+      <div class="graph-pickers">
+        <div>
+          <a href="" ng-click="view='heb'" ng-class="{active: view == 'heb'}">
+            <img class="view-button active" src="images/HEB_button.jpg">
+          </a>
+        </div>
+        <div>
+          <a href="" ng-click="view='rttree'" ng-class="{active: view == 'rttree'}">
+            <img class="view-button" src="images/RTTree_button.jpg">
+          </a>
+        </div>
+      </div>
+
+      <div ng-if="view=='rttree'" class="animate-if" ng-include src="'partials/radial_rttree.html'"></div>
+      <div ng-if="view=='heb'" class="animate-if" ng-include src="'partials/radial_graph.html'"></div>
+    </div>
+  </div>
 </div>

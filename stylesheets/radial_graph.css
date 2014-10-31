@@ -8,4 +8,5 @@
 /* line 11, ../sass/radial_graph.scss */
 .link {
   fill: none;
+  pointer-events: all;
 }

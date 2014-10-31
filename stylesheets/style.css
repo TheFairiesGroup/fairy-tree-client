@@ -38,7 +38,7 @@ h1 {
 }
 
 /* line 35, ../sass/style.scss */
-h1 abbr[title] {
+abbr[title] {
   border: none;
   text-decoration: none;
 }

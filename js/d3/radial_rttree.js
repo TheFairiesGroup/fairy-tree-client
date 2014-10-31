@@ -48,16 +48,16 @@
                                 return _.chain(courses).map(function(current) {
                                     if (root.$id == current.$id) { return undefined; }
 
-                                    var outgoing = _.intersection(root.provides, current.depends);
-                                    var incoming = _.intersection(root.depends, current.provides);
+                                    var links = _.intersection(root.provides, current.depends);
 
-                                    if(/*!incoming.length &&*/ !outgoing.length) return undefined;
+                                    if(!links.length) return undefined;
 
                                     return {
                                         name: current.display_name,
                                         id: current.$id,
                                         course: current,
-                                        children: buildChildren(current, _.without(courses, root), level + 1)
+                                        children: buildChildren(current, _.without(courses, root), level + 1),
+                                        links: links
                                     };
                                 }).compact().value();
                             };
@@ -113,7 +113,12 @@
                                 .append("path")
                                     .attr("class", "link")
                                     .attr("d", diagonal)
-                                    .attr("stroke", 'url(#gradient)');
+                                    .attr("stroke", 'url(#gradient)')
+                                .append("title")
+                                    .text(function(d) {
+                                        if(d.target.links.length == 1 && d.target.links[0] == 'root_link') return '';
+                                        return d.target.links.join(', ');
+                                    });
 
                             var node = svg.selectAll(".node")
                                 .data(nodes).enter()

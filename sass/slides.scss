@@ -1,15 +1,31 @@
 #slides-page {
   #slide-welcome {
+    padding: 20em 0;
+    text-align: center;
+    min-height: 30em;
+
     h1 {
       font-size: 5em;
     }
 
-    padding: 20em 0;
-    text-align: center;
-    min-height: 30em;
+    p {
+      max-width: 40em;
+      margin: 0 auto;
+    }
+
+    p.about {
+      margin-bottom: 1.5em;
+    }
+
+    p.call-for-help {
+      font-size: 1.4em;
+    }
   }
 
   #slide-majors {
+    text-align: center;
+    padding: 10em 0 20em 0;
+
     p {
       font-size: 2.4em;
 
@@ -17,8 +33,42 @@
         font-weight: 300;
       }
     }
+  }
 
-    text-align: center;
-    padding: 10em 0 20em 0;
+  #slide-graph {
+    display: none;
+    margin: 10em 0 3em 0;
+
+    p.loading {
+      text-align: center;
+      padding: 10em 0 30em 0;
+      font-size: 2.4em;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    .graph-pickers {
+      float: left;
+
+      a {
+        display: inline-block;
+        border: 1px solid #ddd;
+        border-radius: 50px;
+        padding: 20px;
+        margin: 20px 0 0 20px;
+
+        img {
+          width: 60px;
+          height: 60px;
+        }
+      }
+
+      a.active {
+        border: 1px solid #2077cc;
+      }
+    }
   }
 }

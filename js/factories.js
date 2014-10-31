@@ -119,6 +119,15 @@
         };
 
         return {
+            checkCache: function() {
+                var now = new Date().getTime();
+                var lastUpdate = $cache.get('updatedAt') || 0;
+
+                if (now > lastUpdate + 24*60*60) {
+                    $cache.purge();
+                    $cache.set('updatedAt', now);
+                }
+            },
             loadMajors: function() {
                 return fetchData('Major');
             },

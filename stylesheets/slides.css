@@ -4,20 +4,70 @@
   text-align: center;
   min-height: 30em;
 }
-/* line 3, ../sass/slides.scss */
+/* line 7, ../sass/slides.scss */
 #slides-page #slide-welcome h1 {
   font-size: 5em;
 }
-/* line 12, ../sass/slides.scss */
+/* line 11, ../sass/slides.scss */
+#slides-page #slide-welcome p {
+  max-width: 40em;
+  margin: 0 auto;
+}
+/* line 16, ../sass/slides.scss */
+#slides-page #slide-welcome p.about {
+  margin-bottom: 1.5em;
+}
+/* line 20, ../sass/slides.scss */
+#slides-page #slide-welcome p.call-for-help {
+  font-size: 1.4em;
+}
+/* line 25, ../sass/slides.scss */
 #slides-page #slide-majors {
   text-align: center;
   padding: 10em 0 20em 0;
 }
-/* line 13, ../sass/slides.scss */
+/* line 29, ../sass/slides.scss */
 #slides-page #slide-majors p {
   font-size: 2.4em;
 }
-/* line 16, ../sass/slides.scss */
+/* line 32, ../sass/slides.scss */
 #slides-page #slide-majors p a {
   font-weight: 300;
+}
+/* line 38, ../sass/slides.scss */
+#slides-page #slide-graph {
+  display: none;
+  margin: 10em 0 3em 0;
+}
+/* line 42, ../sass/slides.scss */
+#slides-page #slide-graph p.loading {
+  text-align: center;
+  padding: 10em 0 30em 0;
+  font-size: 2.4em;
+}
+/* line 48, ../sass/slides.scss */
+#slides-page #slide-graph h1 {
+  text-align: center;
+  margin-bottom: 0;
+}
+/* line 53, ../sass/slides.scss */
+#slides-page #slide-graph .graph-pickers {
+  float: left;
+}
+/* line 56, ../sass/slides.scss */
+#slides-page #slide-graph .graph-pickers a {
+  display: inline-block;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  padding: 20px;
+  margin: 20px 0 0 20px;
+}
+/* line 63, ../sass/slides.scss */
+#slides-page #slide-graph .graph-pickers a img {
+  width: 60px;
+  height: 60px;
+}
+/* line 69, ../sass/slides.scss */
+#slides-page #slide-graph .graph-pickers a.active {
+  border: 1px solid #2077cc;
 }
