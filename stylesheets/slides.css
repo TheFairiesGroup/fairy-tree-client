@@ -34,27 +34,31 @@
 #slides-page #slide-majors p a {
   font-weight: 300;
 }
-/* line 38, ../sass/slides.scss */
+/* line 36, ../sass/slides.scss */
+#slides-page #slide-majors p span {
+  color: #aaa;
+}
+/* line 42, ../sass/slides.scss */
 #slides-page #slide-graph {
   display: none;
   margin: 10em 0 3em 0;
 }
-/* line 42, ../sass/slides.scss */
+/* line 46, ../sass/slides.scss */
 #slides-page #slide-graph p.loading {
   text-align: center;
   padding: 10em 0 30em 0;
   font-size: 2.4em;
 }
-/* line 48, ../sass/slides.scss */
+/* line 52, ../sass/slides.scss */
 #slides-page #slide-graph h1 {
   text-align: center;
   margin-bottom: 0;
 }
-/* line 53, ../sass/slides.scss */
+/* line 57, ../sass/slides.scss */
 #slides-page #slide-graph .graph-pickers {
   float: left;
 }
-/* line 56, ../sass/slides.scss */
+/* line 60, ../sass/slides.scss */
 #slides-page #slide-graph .graph-pickers a {
   display: inline-block;
   border: 1px solid #ddd;
@@ -62,12 +66,12 @@
   padding: 20px;
   margin: 20px 0 0 20px;
 }
-/* line 63, ../sass/slides.scss */
+/* line 67, ../sass/slides.scss */
 #slides-page #slide-graph .graph-pickers a img {
   width: 60px;
   height: 60px;
 }
-/* line 69, ../sass/slides.scss */
+/* line 73, ../sass/slides.scss */
 #slides-page #slide-graph .graph-pickers a.active {
   border: 1px solid #2077cc;
 }

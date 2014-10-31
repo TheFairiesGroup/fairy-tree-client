@@ -2,7 +2,7 @@
     angular.module('fairyTree.directives').directive('scrollTo',
         function($document) {
             return {
-                priority: 1000, /* XXX: this is a hack */
+                priority: 100, /* XXX: this is a hack */
                 link: function($scope, element, attrs) {
                     element.on('click', function(e) {
                         $('html,body').animate({scrollTop: $(attrs.scrollTo).offset().top}, 'slow');
