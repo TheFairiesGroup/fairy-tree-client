@@ -123,7 +123,7 @@
                 var now = new Date().getTime();
                 var lastUpdate = $cache.get('updatedAt') || 0;
 
-                if (now > lastUpdate + 24*60*60) {
+                if (now > lastUpdate + 24*60*60*1000) {
                     $cache.purge();
                     $cache.set('updatedAt', now);
                 }
