@@ -12,11 +12,11 @@
   <simple-format text="selected.description"></simple-format>
 
   <ul>
-    <li class="depends" ng-repeat="depends in selected.depends" ng-if="depends != 'root_link'">
+    <li class="depends" ng-repeat="depends in selected.depends" ng-if="depends != 'root_link' && depends != 'dummy_depends'">
       {{depends}}
     </li>
 
-    <li class="provides" ng-repeat="provide in selected.provides">
+    <li class="provides" ng-repeat="provide in selected.provides" ng-if="provide != 'dummy_provides'">
       {{provide}}
     </li>
   </ul>
