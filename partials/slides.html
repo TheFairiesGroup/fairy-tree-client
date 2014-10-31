@@ -16,12 +16,21 @@
     </div>
   </main>
 
-  <div id="slide-majors">
-    <p class="loading" ng-hide="majors.length">Зареждане...</p>
-    <p ng-repeat="major in majors">
-      <a href="" ng-click="selectMajor(major.$id)" scroll-to="#slide-graph" ng-if="major.active">{{major.display_name}}</a>
-      <span ng-if="!major.active">{{major.display_name}}</span>
-    </p>
+  <div style="height: 800px">
+    <div id="slide-majors" class="column main" style="float: left; width: 70%">
+      <p class="loading" ng-hide="majors.length">Зареждане...</p>
+      <p ng-repeat="major in majors">
+        <a href="" ng-click="selectMajor(major.$id)" scroll-to="#slide-graph" ng-if="major.active">{{major.display_name}}</a>
+        <span ng-if="!major.active">{{major.display_name}}</span>
+      </p>
+    </div>
+    <div id="major-description">
+      <section ng-show="currentMajor" class="column small" >
+        <h2>{{currentMajor.display_name}}</h2>
+
+        <simple-format text="currentMajor.description"></simple-format>
+      </section>
+    </div>
   </div>
 
   <div id="slide-graph">
