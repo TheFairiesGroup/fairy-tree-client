@@ -2,11 +2,15 @@
     var controllers = angular.module('fairyTree.controllers');
 
     controllers.controller('MajorsController', function MajorsController($scope, $data, $u, $routeParams) {
+        $data.checkCache();
+
         $data.loadMajors().then(function(majors) {
             $scope.majors = majors;
             $scope.view = 'rttree';
 
             $scope.selectMajor = function(majorId) {
+                $('#slide-graph').show(); /* XXX: this is a hack */
+
                 $scope.currentMajor = $u.findById($scope.majors, majorId);
 
                 $data.loadCoursesFor({majorId: majorId}).then(function(courses) {

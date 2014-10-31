@@ -2,7 +2,6 @@
 
 (function() {
     angular.module('fairyTree').config(["$routeProvider",
-
         function($routeProvider) {
             $routeProvider
                 .when("/home", {
