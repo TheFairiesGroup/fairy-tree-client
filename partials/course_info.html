@@ -1,9 +1,5 @@
 <section ng-hide="selected">
-  <ul>
-    <li ng-repeat="course in courses">
-      {{course.display_name}}
-    </li>
-  </ul>
+  <simple-format text="currentMajor.description"></simple-format>
 </section>
 
 <section class="course-info" ng-show="selected">
