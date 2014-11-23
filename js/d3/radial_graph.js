@@ -53,7 +53,11 @@
                                     .attr('preserveAspectRatio', 'xMidYMid')
                                     .attr('class', 'chart')
                                     .attr('width', diameter)
-                                    .attr('height', diameter);
+                                    .attr('height', diameter)
+                                    .on('click', function(d) {
+                                        $scope.selected = null;
+                                        $scope.$apply();
+                                    });
 
                             var svg = chart.append("g").attr("transform", "translate(" + radius + "," + radius + ")");
 
@@ -147,6 +151,7 @@
                                         return d.name;
                                     })
                                     .on('click', function(d) {
+                                        d3.event.stopPropagation();
                                         $scope.selected = d.course;
                                         $scope.$apply();
                                     })
