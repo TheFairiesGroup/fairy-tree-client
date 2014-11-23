@@ -11,6 +11,7 @@
             $scope.selectMajor = function(majorId) {
                 $('#slide-graph').show(); /* XXX: this is a hack */
 
+                $scope.view = ($scope.view == 'rttree' ? 'heb' : 'rttree');  /* Hack to ensure reloading directives and deselect of subject*/
                 $scope.currentMajor = $u.findById($scope.majors, majorId);
 
                 $data.loadCoursesFor({majorId: majorId}).then(function(courses) {
