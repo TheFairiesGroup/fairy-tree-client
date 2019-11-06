@@ -1,11 +1,11 @@
 (function() {
-    var controllers = angular.module('fairyTree.controllers');
+    var controllers = angular.module('fairyTree.controllers', ["firebase"]);
 
-    controllers.controller('MajorsController', function MajorsController($scope, $data, $u, $routeParams) {
+    controllers.controller('MajorsController', function MajorsController($scope, $data, $u, $routeParams, $firebaseArray) {
         $data.checkCache();
 
         $data.loadMajors().then(function(majors) {
-            $scope.majors = majors;
+            $scope.majors = $firebaseArray(majors.ref);
             $scope.view = 'rttree';
 
             $scope.selectMajor = function(majorId) {

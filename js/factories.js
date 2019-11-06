@@ -94,7 +94,7 @@
         return cacheFactory;
     });
 
-    factories.factory('$data', function($firebase, $q, $u, $cache) {
+    factories.factory('$data', function($firebase, $q, $u, $cache, $firebaseArray) {
         var asPromise = function(value) {
             var deferred = $q.defer();
 
@@ -107,15 +107,9 @@
             var data = $cache.get(key)
             if (data) { return asPromise(data); }
 
-            var ref = new Firebase("https://fairybase.firebaseio.com/" + key);
-
-            data = $firebase(ref).$asArray();
-
-            data.$loaded().then(function() {
-                $cache.set(key, data);
-            });
-
-            return data.$loaded();
+            var ref = firebase.database().ref(key);
+            var value = ref.once('value');
+            return value;
         };
 
         return {
