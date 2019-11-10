@@ -53,7 +53,7 @@
                                 return _.chain(courses).map(function(current) {
                                     if (root.Id == current.Id) { return undefined; }
 
-                                    var links = _.intersection(root.provides, current.depends);
+                                    var links = _.intersection(root.Provides, current.Depends);
 
                                     if(!links.length) return undefined;
 
@@ -94,8 +94,8 @@
                                 Id: 'rootId',
                                 _name: 'root_name',
                                 Name: $scope.major.Name,
-                                depends: [],
-                                provides: ['root_link'],
+                                Depends: [],
+                                Provides: ['root_link'],
                                 subject: {
                                     Id: 'root_subject',
                                     _name: 'root_subj_name'
@@ -103,8 +103,8 @@
                             };
 
                             courses = courses.map(function(c) {
-                                if(!c.subject.depends || c.subject.depends.length == 0)
-                                    c.subject.depends = ['root_link'];
+                                if(!c.Depends || c.Depends.length == 0)
+                                    c.Depends = ['root_link'];
                                 return c;
                             });
 
