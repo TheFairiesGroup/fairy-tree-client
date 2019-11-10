@@ -10,25 +10,27 @@
                 $scope.majors.forEach((major) => { major.active = true; });
                 $scope.view = 'rttree';
 
-                $scope.selectMajor = function(majorId) {
+                $scope.selectMajor = function(majorName) {
                     $('#slide-graph').show(); /* XXX: this is a hack */
 
                     $scope.view = ($scope.view == 'rttree' ? 'heb' : 'rttree');  /* Hack to ensure reloading directives and deselect of subject*/
-                    $scope.currentMajor = $u.findById($scope.majors, majorId);
+                    $scope.currentMajor = $u.findById($scope.majors, majorName);
 
-                    $data.loadCoursesFor({majorId: majorId}).then(function(courses) {
+                    $data.loadCoursesFor({majorName: majorName}).then(function(courses) {
                         $data.loadSubjects().then(function(subjects) {
                             let syncedSubjects = subjects.val();
                             courses.forEach(function(course) {
-                                course.subject = $u.findById(syncedSubjects, course.subject_id);
+                                course.subject = $u.findById(syncedSubjects, course.Subject);
 
                                 /* e.g. course.provides === course.subject.provides */
-                                ['provides', 'depends', 'description'].forEach(function(property) {
+                                ['Provides', 'Depends', 'Description'].forEach(function(property) {
                                     Object.defineProperty(course, property, {get: function() { return this.subject[property]; }});
                                 });
                             });
 
-                            $scope.courses = courses;
+                            $scope.$apply(function() {
+                                $scope.courses = courses;
+                            });
                         });
                     });
                 };

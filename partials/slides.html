@@ -20,7 +20,7 @@
     <!-- <div>{{majors.length || "not loaded"}}</div> -->
     <p class="loading" ng-hide="majors.length">Зареждане...</p>
     <p ng-repeat="major in majors">
-      <a href="" ng-click="selectMajor(major.$id)" scroll-to="#slide-graph" ng-if="major.active">{{major.Name}}</a>
+      <a href="" ng-click="selectMajor(major.Name)" scroll-to="#slide-graph" ng-if="major.active">{{major.Name}}</a>
       <span ng-if="!major.active">{{major.Name}}</span>
     </p>
   </div>

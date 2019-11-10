@@ -87,7 +87,7 @@
                                     return {
                                         name: current.Name,
                                         parent: 'root',
-                                        id: current.$id,
+                                        id: current.Id,
                                         course: current,
                                         size: Math.round(Math.random() * 10000)
                                     };
@@ -99,10 +99,10 @@
                                 var source, target;
 
                                 for (var i = 0; i < nodes.length; i++) {
-                                    if (edge.from.$id == nodes[i].id) {
+                                    if (edge.from.Id == nodes[i].id) {
                                         source = nodes[i];
                                     }
-                                    if (edge.to.$id == nodes[i].id) {
+                                    if (edge.to.Id == nodes[i].id) {
                                         target = nodes[i];
                                     }
 

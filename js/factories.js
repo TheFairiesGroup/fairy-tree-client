@@ -4,9 +4,9 @@
 
     factories.factory('$u', function() {
         return {
-            findById: function(array, id) {
+            findById: function(array, name) {
                 return array.filter(function(current) {
-                    return (current.$id == id);
+                    return (current.Name == name);
                 })[0];
             },
             buildEdges: function(courses) {
@@ -109,9 +109,10 @@
 
             var ref = firebase.database().ref(key + '/Result');
             var value = ref.once('value');
-            value.then(function(data) {  
-                $cache.set(key, data);  
-            });
+            // TODO: Adding to the cache currently produces stack overflow.
+            // value.then(function(data) {  
+            //     $cache.set(key, data);  
+            // });
             return value;
         };
 
@@ -128,17 +129,19 @@
             loadMajors: function() {
                 return fetchData('Major');
             },
-            findMajor: function(id) {
-                var deferred = $q.defer();
+            // TODO: The bevaiour of findById has changed
+            // and this function needs rewriting.
+            // findMajor: function(id) {
+            //     var deferred = $q.defer();
 
-                this.loadMajors().then(function(majors) {
-                    deferred.resolve(
-                        $u.findById(majors, id)
-                    )
-                });
+            //     this.loadMajors().then(function(majors) {
+            //         deferred.resolve(
+            //             $u.findById(majors, id)
+            //         )
+            //     });
 
-                return deferred.promise;
-            },
+            //     return deferred.promise;
+            // },
             loadSubjects: function() {
                 return fetchData('Subject');
             },
@@ -152,7 +155,7 @@
                     let syncedCourses = courses.val();
                     deferred.resolve(
                         syncedCourses.filter(function(course) {
-                            return (course.major_id == query.majorId);
+                            return (course.Major == query.majorName);
                         })
                     );
                 });
