@@ -85,7 +85,7 @@
                             var findNodes = function(courses) {
                                 return courses.map(function(current) {
                                     return {
-                                        name: current.display_name,
+                                        name: current.Name,
                                         parent: 'root',
                                         id: current.$id,
                                         course: current,

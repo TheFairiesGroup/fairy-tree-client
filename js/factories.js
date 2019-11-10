@@ -94,7 +94,7 @@
         return cacheFactory;
     });
 
-    factories.factory('$data', function($firebase, $q, $u, $cache, $firebaseArray) {
+    factories.factory('$data', function($firebase, $q, $u, $cache) {
         var asPromise = function(value) {
             var deferred = $q.defer();
 
@@ -107,8 +107,11 @@
             var data = $cache.get(key)
             if (data) { return asPromise(data); }
 
-            var ref = firebase.database().ref(key);
+            var ref = firebase.database().ref(key + '/Result');
             var value = ref.once('value');
+            value.then(function(data) {  
+                $cache.set(key, data);  
+            });
             return value;
         };
 
@@ -140,14 +143,15 @@
                 return fetchData('Subject');
             },
             loadCourses: function() {
-                return fetchData('Course');
+                return fetchData('Alias');
             },
             loadCoursesFor: function(query) {
                 var deferred = $q.defer();
 
                 this.loadCourses().then(function(courses) {
+                    let syncedCourses = courses.val();
                     deferred.resolve(
-                        courses.filter(function(course) {
+                        syncedCourses.filter(function(course) {
                             return (course.major_id == query.majorId);
                         })
                     );

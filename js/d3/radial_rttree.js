@@ -58,7 +58,7 @@
                                     if(!links.length) return undefined;
 
                                     return {
-                                        name: current.display_name,
+                                        name: current.Name,
                                         id: current.$id,
                                         course: current,
                                         children: buildChildren(current, _.without(courses, root), level + 1),
@@ -93,7 +93,7 @@
                             var root = {
                                 $id: 'rootId',
                                 _name: 'root_name',
-                                display_name: $scope.major.display_name,
+                                Name: $scope.major.Name,
                                 depends: [],
                                 provides: ['root_link'],
                                 subject: {
@@ -110,7 +110,7 @@
 
                             var children1st = buildChildren(root, courses, 0);
 
-                            var nodes = tree.nodes({name: root.display_name, children: children1st});
+                            var nodes = tree.nodes({name: root.Name, children: children1st});
                             var links = tree.links(nodes)
 
                             var link = svg.selectAll(".link")
