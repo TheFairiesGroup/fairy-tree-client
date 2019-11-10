@@ -85,9 +85,9 @@
                             var findNodes = function(courses) {
                                 return courses.map(function(current) {
                                     return {
-                                        name: current.display_name,
+                                        name: current.Name,
                                         parent: 'root',
-                                        id: current.$id,
+                                        id: current.Id,
                                         course: current,
                                         size: Math.round(Math.random() * 10000)
                                     };
@@ -99,10 +99,10 @@
                                 var source, target;
 
                                 for (var i = 0; i < nodes.length; i++) {
-                                    if (edge.from.$id == nodes[i].id) {
+                                    if (edge.from.Id == nodes[i].id) {
                                         source = nodes[i];
                                     }
-                                    if (edge.to.$id == nodes[i].id) {
+                                    if (edge.to.Id == nodes[i].id) {
                                         target = nodes[i];
                                     }
 
@@ -166,7 +166,7 @@
                                 .append("title")
                                     .text(function(d) {
                                         if (d.course) {
-                                            return (d.course.description || '').split(' ').slice(0, 14).join(' ') + '...';
+                                            return (d.course.Description || '').split(' ').slice(0, 14).join(' ') + '...';
                                         }
                                     });
 

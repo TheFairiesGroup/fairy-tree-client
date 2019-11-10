@@ -51,15 +51,15 @@
                             var buildChildren = function(root, courses, level) {
                                 //if(level > 2) return [];
                                 return _.chain(courses).map(function(current) {
-                                    if (root.$id == current.$id) { return undefined; }
+                                    if (root.Id == current.Id) { return undefined; }
 
-                                    var links = _.intersection(root.provides, current.depends);
+                                    var links = _.intersection(root.Provides, current.Depends);
 
                                     if(!links.length) return undefined;
 
                                     return {
-                                        name: current.display_name,
-                                        id: current.$id,
+                                        name: current.Name,
+                                        id: current.Id,
                                         course: current,
                                         children: buildChildren(current, _.without(courses, root), level + 1),
                                         links: links
@@ -91,26 +91,26 @@
                             // TODO: function to calculate all "initial nodes"
                             // and build trees from all of them
                             var root = {
-                                $id: 'rootId',
+                                Id: 'rootId',
                                 _name: 'root_name',
-                                display_name: $scope.major.display_name,
-                                depends: [],
-                                provides: ['root_link'],
+                                Name: $scope.major.Name,
+                                Depends: [],
+                                Provides: ['root_link'],
                                 subject: {
-                                    $id: 'root_subject',
+                                    Id: 'root_subject',
                                     _name: 'root_subj_name'
                                 }
                             };
 
                             courses = courses.map(function(c) {
-                                if(!c.subject.depends || c.subject.depends.length == 0)
-                                    c.subject.depends = ['root_link'];
+                                if(!c.Depends || c.Depends.length == 0)
+                                    c.Depends = ['root_link'];
                                 return c;
                             });
 
                             var children1st = buildChildren(root, courses, 0);
 
-                            var nodes = tree.nodes({name: root.display_name, children: children1st});
+                            var nodes = tree.nodes({name: root.Name, children: children1st});
                             var links = tree.links(nodes)
 
                             var link = svg.selectAll(".link")
@@ -143,7 +143,7 @@
                                 .append("title")
                                     .text(function(d) {
                                         if (d.course) {
-                                            return (d.course.description || '').split(' ').slice(0, 14).join(' ') + '...';
+                                            return (d.course.Description || '').split(' ').slice(0, 14).join(' ') + '...';
                                         }
                                     });
 

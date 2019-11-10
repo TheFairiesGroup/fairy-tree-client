@@ -4,9 +4,9 @@
 
     factories.factory('$u', function() {
         return {
-            findById: function(array, id) {
+            findById: function(array, name) {
                 return array.filter(function(current) {
-                    return (current.$id == id);
+                    return (current.Name == name);
                 })[0];
             },
             buildEdges: function(courses) {
@@ -14,16 +14,16 @@
 
                 courses.forEach(function(current, i) {
                     var connections = [],
-                        dependancies = current.depends || [];
+                        dependancies = current.Depends || [];
 
                     var helpingCourses = courses.filter(function(course, j) {
-                        if (i === j || !course.provides) {
+                        if (i === j || !course.Provides) {
                             return false;
                         }
 
                         var helpsWith = [];
                         dependancies.forEach(function(term) {
-                            if (course.provides.indexOf(term) > -1) {
+                            if (course.Provides.indexOf(term) > -1) {
                                 helpsWith.push(term);
                                 return true;
                             }
@@ -107,15 +107,13 @@
             var data = $cache.get(key)
             if (data) { return asPromise(data); }
 
-            var ref = new Firebase("https://fairybase.firebaseio.com/" + key);
-
-            data = $firebase(ref).$asArray();
-
-            data.$loaded().then(function() {
-                $cache.set(key, data);
-            });
-
-            return data.$loaded();
+            var ref = firebase.database().ref(key + '/Result');
+            var value = ref.once('value');
+            // TODO: Adding to the cache currently produces stack overflow.
+            // value.then(function(data) {  
+            //     $cache.set(key, data);  
+            // });
+            return value;
         };
 
         return {
@@ -131,30 +129,33 @@
             loadMajors: function() {
                 return fetchData('Major');
             },
-            findMajor: function(id) {
-                var deferred = $q.defer();
+            // TODO: The bevaiour of findById has changed
+            // and this function needs rewriting.
+            // findMajor: function(id) {
+            //     var deferred = $q.defer();
 
-                this.loadMajors().then(function(majors) {
-                    deferred.resolve(
-                        $u.findById(majors, id)
-                    )
-                });
+            //     this.loadMajors().then(function(majors) {
+            //         deferred.resolve(
+            //             $u.findById(majors, id)
+            //         )
+            //     });
 
-                return deferred.promise;
-            },
+            //     return deferred.promise;
+            // },
             loadSubjects: function() {
                 return fetchData('Subject');
             },
             loadCourses: function() {
-                return fetchData('Course');
+                return fetchData('Alias');
             },
             loadCoursesFor: function(query) {
                 var deferred = $q.defer();
 
                 this.loadCourses().then(function(courses) {
+                    let syncedCourses = courses.val();
                     deferred.resolve(
-                        courses.filter(function(course) {
-                            return (course.major_id == query.majorId);
+                        syncedCourses.filter(function(course) {
+                            return (course.Major == query.majorName);
                         })
                     );
                 });

@@ -9,7 +9,6 @@
       </p>
       <p class="call-for-help">
         Този проект е с отворен код. Ако искате да помогнете: <a href="https://github.com/TheFairiesGroup/fairy-tree-client/issues">привет</a>.<br/>
-        Ако се чудите къде да ни намерите <a href="mailto:thefairies@gmail.com">fmifairies@gmail.com</a><br/>
       </p>
 
       <div class="scroll-indicator bounce" scroll-to="#slide-majors"></div>
@@ -17,10 +16,11 @@
   </main>
 
   <div id="slide-majors">
+    <!-- <div>{{majors.length || "not loaded"}}</div> -->
     <p class="loading" ng-hide="majors.length">Зареждане...</p>
     <p ng-repeat="major in majors">
-      <a href="" ng-click="selectMajor(major.$id)" scroll-to="#slide-graph" ng-if="major.active">{{major.display_name}}</a>
-      <span ng-if="!major.active">{{major.display_name}}</span>
+      <a href="" ng-click="selectMajor(major.Name)" scroll-to="#slide-graph" ng-if="major.active">{{major.Name}}</a>
+      <span ng-if="!major.active">{{major.Name}}</span>
     </p>
   </div>
 
@@ -28,7 +28,7 @@
     <p class="loading" ng-hide="courses.length">Зареждане...</p>
 
     <div ng-show="courses.length">
-      <h1>{{currentMajor.display_name || 'Специалност'}}</h1>
+      <h1>{{currentMajor.Name || 'Специалност'}}</h1>
       <div class="graph-pickers">
         <div>
           <a href="" ng-click="view='heb'" ng-class="{active: view == 'heb'}">
