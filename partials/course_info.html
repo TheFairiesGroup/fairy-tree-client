@@ -1,11 +1,11 @@
 <section ng-hide="selected">
-  <simple-format text="currentMajor.description"></simple-format>
+  <simple-format text="currentMajor.Description"></simple-format>
 </section>
 
 <section class="course-info" ng-show="selected">
   <h2>{{selected.Name}}</h2>
 
-  <simple-format text="selected.description"></simple-format>
+  <simple-format text="selected.Description"></simple-format>
 
   <ul>
     <li class="depends" ng-repeat="depends in selected.depends" ng-if="depends != 'root_link' && depends != 'dummy_depends'">

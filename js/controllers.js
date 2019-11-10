@@ -18,18 +18,26 @@
 
                     $data.loadCoursesFor({majorName: majorName}).then(function(courses) {
                         $data.loadSubjects().then(function(subjects) {
-                            let syncedSubjects = subjects.val();
+                            let syncedSubjects = subjects.val().filter((subject) => {
+                                return $scope.currentMajor.Subjects.indexOf(subject.Name) >= 0;
+                            });
                             courses.forEach(function(course) {
-                                course.subject = $u.findById(syncedSubjects, course.Subject);
+                                const foundSubject = $u.findById(syncedSubjects, course.Subject);
 
                                 /* e.g. course.provides === course.subject.provides */
                                 ['Provides', 'Depends', 'Description'].forEach(function(property) {
-                                    Object.defineProperty(course, property, {get: function() { return this.subject[property]; }});
+                                    course[property] = foundSubject[property];
                                 });
+                                let subjectIdx = syncedSubjects.findIndex((subject) => {
+                                    return subject.Name == course.Subject;
+                                });
+                                if (subjectIdx >= 0) {
+                                    syncedSubjects[subjectIdx] = course;
+                                }
                             });
 
                             $scope.$apply(function() {
-                                $scope.courses = courses;
+                                $scope.courses = syncedSubjects;
                             });
                         });
                     });

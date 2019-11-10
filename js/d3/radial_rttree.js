@@ -143,7 +143,7 @@
                                 .append("title")
                                     .text(function(d) {
                                         if (d.course) {
-                                            return (d.course.description || '').split(' ').slice(0, 14).join(' ') + '...';
+                                            return (d.course.Description || '').split(' ').slice(0, 14).join(' ') + '...';
                                         }
                                     });
 

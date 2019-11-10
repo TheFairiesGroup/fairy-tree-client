@@ -14,16 +14,16 @@
 
                 courses.forEach(function(current, i) {
                     var connections = [],
-                        dependancies = current.depends || [];
+                        dependancies = current.Depends || [];
 
                     var helpingCourses = courses.filter(function(course, j) {
-                        if (i === j || !course.provides) {
+                        if (i === j || !course.Provides) {
                             return false;
                         }
 
                         var helpsWith = [];
                         dependancies.forEach(function(term) {
-                            if (course.provides.indexOf(term) > -1) {
+                            if (course.Provides.indexOf(term) > -1) {
                                 helpsWith.push(term);
                                 return true;
                             }
